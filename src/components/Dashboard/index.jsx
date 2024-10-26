@@ -1,62 +1,55 @@
+import { Card } from "antd";
 import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
   UserOutlined,
+  OrderedListOutlined,
+  ProductOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
-import { useState } from "react";
-const { Header, Content, Footer, Sider } = Layout;
-function getItem(label, key, icon, children) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
-}
-const items = [
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
-  ]),
-  getItem("Team", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
-  ]),
-  getItem("Files", "9", <FileOutlined />),
-];
-const Dashboard = () => {
-  const [collapsed, setCollapsed] = useState(false);
+import Sidebar from "../Sidebar";
+
+const DashboardContent = () => {
+  const data = [
+    { title: "Total Orders", icon: <OrderedListOutlined />, counting: 10 },
+    { title: "Total Products", icon: <ProductOutlined />, counting: 100 },
+    { title: "Total Users", icon: <UserOutlined />, counting: 120 },
+  ];
+
   return (
-    <Layout className="min-h-[100vh]">
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-      >
-        <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          defaultSelectedKeys={["1"]}
-          mode="inline"
-          items={items}
+    <div className="flex-grow">
+      {/* Headers */}
+      <div className="flex justify-between items-center py-5">
+        <h2 className="text-2xl font-semibold">Liberty Cart</h2>
+        <input
+          type="text"
+          placeholder="Search"
+          className="p-2 border rounded-md shadow-sm w-64"
         />
-      </Sider>
-      <Layout>
-        <Header className="bg-white"/>
-        <Content className="my-0 mx-4">
-          <div className="p-6 min-h-96 bg-white">Bill is a cat.</div>
-        </Content>
-        <Footer className="text-center">
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
-      </Layout>
-    </Layout>
+      </div>
+      <div className="flex h-screen">
+        <Sidebar />
+        <div className="w-full px-2">
+          <div className="grid grid-cols-3 gap-12">
+            {data.map((item, index) => (
+              <Card key={index} className="shadow-lg cursor-pointer">
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-lg font-medium">{item.title}</span>
+                    <span className="text-2xl font-semibold mt-1">
+                      {item.amount}
+                    </span>
+                    <span className="text-sm text-gray-500">
+                      {item.counting}
+                    </span>
+                  </div>
+                  <div className="text-3xl text-green-500">{item.icon}</div>
+                </div>
+              </Card>
+            ))}
+          </div>
+          <div className="grid grid-cols-3 gap-4 px-2 mt-5">Content</div>
+        </div>
+      </div>
+    </div>
   );
 };
-export default Dashboard;
+
+export default DashboardContent;

@@ -4,9 +4,11 @@ import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Dashboard/>}/>
-    </Routes>
+    <div className="App container mx-auto">
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+      </Routes>
+    </div>
   );
 }
 
