@@ -1,4 +1,5 @@
 import { Card } from "antd";
+import logo from "../../assets/liberty_cart_logo.jpg"
 import {
   UserOutlined,
   OrderedListOutlined,
@@ -6,7 +7,7 @@ import {
 } from "@ant-design/icons";
 import Sidebar from "../Sidebar";
 
-const DashboardContent = () => {
+const Dashboard = () => {
   const data = [
     { title: "Total Orders", icon: <OrderedListOutlined />, counting: 10 },
     { title: "Total Products", icon: <ProductOutlined />, counting: 100 },
@@ -17,7 +18,8 @@ const DashboardContent = () => {
     <div className="flex-grow">
       {/* Headers */}
       <div className="flex justify-between items-center py-5">
-        <h2 className="text-2xl font-semibold">Liberty Cart</h2>
+        <img src={logo} alt="logo" className="h-14 w-52 cursor-pointer" />
+        {/* Search Bar */}
         <input
           type="text"
           placeholder="Search"
@@ -29,7 +31,7 @@ const DashboardContent = () => {
         <div className="w-full px-2">
           <div className="grid grid-cols-3 gap-12">
             {data.map((item, index) => (
-              <Card key={index} className="shadow-lg cursor-pointer">
+              <Card hoverable={true} key={index} className="shadow-sm cursor-pointer">
                 <div className="flex items-center justify-between">
                   <div className="flex flex-col">
                     <span className="text-lg font-medium">{item.title}</span>
@@ -52,4 +54,4 @@ const DashboardContent = () => {
   );
 };
 
-export default DashboardContent;
+export default Dashboard;
