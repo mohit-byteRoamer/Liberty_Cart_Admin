@@ -1,4 +1,4 @@
-import APIKit from "./apikit";
+import APIKit from "./api_kit";
 
 const StatusCodes = {
   Success: 1,

@@ -1,6 +1,6 @@
 import axios from "axios";
-
-export const url = "https://liberty-cart-server.onrender.com/";
+// import { DataManager } from "../../utils/dataManager";
+export const url = "https://liberty-cart-server.onrender.com/"; // dell
 
 export const finalURL = `${url}api/v1`;
 const APIKit = axios.create({
@@ -8,7 +8,7 @@ const APIKit = axios.create({
   timeout: 60000000,
 });
 
-APIKit.interceptor.request.use(async (config) => {
+APIKit.interceptors.request.use(async (config) => {
   let accessToken = localStorage.getItem("token");
   if (accessToken) {
     config.headers["Authorization"] = `Bearer ${accessToken}`;

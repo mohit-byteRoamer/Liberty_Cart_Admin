@@ -1,37 +1,48 @@
 import { Card } from "antd";
-import logo from "../../assets/liberty_cart_logo.jpg"
 import {
   UserOutlined,
   OrderedListOutlined,
   ProductOutlined,
 } from "@ant-design/icons";
 import Sidebar from "../Sidebar";
+import AppHeader from "../AppHeader/Header";
 
 const Dashboard = () => {
   const data = [
-    { title: "Total Orders", icon: <OrderedListOutlined />, counting: 10 },
-    { title: "Total Products", icon: <ProductOutlined />, counting: 100 },
-    { title: "Total Users", icon: <UserOutlined />, counting: 120 },
+    {
+      title: "Total Orders",
+      icon: <OrderedListOutlined className="text-blue-500" />,
+      counting: 10,
+    },
+    {
+      title: "Total Products",
+      icon: <ProductOutlined className="text-blue-500" />,
+      counting: 100,
+    },
+    {
+      title: "Total Users",
+      icon: <UserOutlined className="text-blue-500" />,
+      counting: 120,
+    },
   ];
 
   return (
     <div className="flex-grow">
       {/* Headers */}
       <div className="flex justify-between items-center py-5">
-        <img src={logo} alt="logo" className="h-14 w-52 cursor-pointer" />
-        {/* Search Bar */}
-        <input
-          type="text"
-          placeholder="Search"
-          className="p-2 border rounded-md shadow-sm w-64"
-        />
+       
+        <AppHeader/>
       </div>
       <div className="flex h-screen">
         <Sidebar />
         <div className="w-full px-2">
           <div className="grid grid-cols-3 gap-12">
             {data.map((item, index) => (
-              <Card hoverable={true} key={index} className="shadow-sm cursor-pointer">
+              <Card
+                hoverable={true}
+                key={index}
+                className="shadow-sm cursor-pointer"
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex flex-col">
                     <span className="text-lg font-medium">{item.title}</span>
