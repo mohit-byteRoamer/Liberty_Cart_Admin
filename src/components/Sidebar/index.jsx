@@ -2,13 +2,17 @@ import { Menu } from "antd";
 import {
   HomeOutlined,
   UserOutlined,
-  TableOutlined,
-  BellOutlined,
   ProductOutlined,
   OrderedListOutlined,
 } from "@ant-design/icons";
 
 const Sidebar = () => {
+  const menuItems = [
+    { label: "Dashboard", key: "dashboard", icon: <HomeOutlined /> },
+    { label: "Products", key: "products", icon: <ProductOutlined /> },
+    { label: "Orders", key: "orders", icon: <OrderedListOutlined /> },
+    { label: "Users", key: "users", icon: <UserOutlined /> },
+  ];
   return (
     <div className="w-1/5 bg-white shadow-md h-full">
       <Menu
@@ -16,20 +20,8 @@ const Sidebar = () => {
         defaultSelectedKeys={["dashboard"]}
         style={{ height: "100%" }}
         className="h-full"
-      >
-        <Menu.Item key="dashboard" icon={<HomeOutlined />}>
-          Dashboard
-        </Menu.Item>
-        <Menu.Item key="profile" icon={<ProductOutlined />}>
-          Products
-        </Menu.Item>
-        <Menu.Item key="tables" icon={<OrderedListOutlined />}>
-          Orders
-        </Menu.Item>
-        <Menu.Item key="notifications" icon={<UserOutlined />}>
-          Users
-        </Menu.Item>
-      </Menu>
+        items={menuItems}
+      ></Menu>
     </div>
   );
 };

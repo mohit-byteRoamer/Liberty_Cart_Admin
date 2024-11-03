@@ -1,14 +1,14 @@
 import { Button, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { MdOutlineLogin } from "react-icons/md";
 import { logInActionLoad } from "../redux/action/auth_action";
 
 const Login = () => {
   const dispatch = useDispatch();
-  // const logInLoader = useSelector((state) => state.AuthReducer.loginLoader);
+  const logInLoader = useSelector((state) => state.AuthReducer.loginLoader);
 
   const navigate = useNavigate();
 
@@ -22,8 +22,8 @@ const Login = () => {
   const onFinish = (values) => {
     dispatch(
       logInActionLoad({
-        email: values.email,
-        password: values.password,
+        apiPayload: { email: values.email, password: values.password },
+        navigate,
       })
     );
   };
@@ -34,7 +34,7 @@ const Login = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
       transition={{ duration: 1 }}
-      className="container flex items-center justify-center max-w-full min-h-[79vh]"
+      className="container flex items-center justify-center max-w-full min-h-[100vh]"
     >
       <div className="w-96 py-8 rounded-2xl shadow-xl flex items-center justify-center border-2">
         <div className="w-[90%]">
@@ -104,7 +104,7 @@ const Login = () => {
             {/* Button */}
             <Button
               className="w-full"
-              // loading={logInLoader}
+              loading={logInLoader}
               type="primary"
               htmlType="submit"
               disabled={Object.keys(errors).length > 0}

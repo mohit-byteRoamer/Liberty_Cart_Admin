@@ -3,6 +3,11 @@ const reduxConstants = {
   LOGIN_LOAD: "LOGIN_LOAD",
   LOGIN_SUCCESS: "LOGIN_SUCCESS",
   LOGIN_FAIL: "LOGIN_FAIL",
+
+  // LOGOUT
+  LOGOUT_LOAD: "LOGOUT_LOAD",
+  LOGOUT_SUCCESS: "LOGOUT_SUCCESS",
+  LOGOUT_FAIL: "LOGOUT_FAIL",
 };
 
 export default reduxConstants;

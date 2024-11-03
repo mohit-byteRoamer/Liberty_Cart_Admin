@@ -5,9 +5,19 @@ import {
   ProductOutlined,
 } from "@ant-design/icons";
 import Sidebar from "../Sidebar";
-import AppHeader from "../AppHeader/Header";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  console.log("token", token);
+  useEffect(() => {
+    if (!token) {
+      navigate("/admin_login");
+    }
+  }, [token, navigate]);
+
   const data = [
     {
       title: "Total Orders",
@@ -29,10 +39,7 @@ const Dashboard = () => {
   return (
     <div className="flex-grow">
       {/* Headers */}
-      <div className="flex justify-between items-center py-5">
-       
-        <AppHeader/>
-      </div>
+
       <div className="flex h-screen">
         <Sidebar />
         <div className="w-full px-2">
