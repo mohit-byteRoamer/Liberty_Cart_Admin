@@ -4,30 +4,18 @@ import {
   OrderedListOutlined,
   ProductOutlined,
 } from "@ant-design/icons";
-import Sidebar from "../Sidebar";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
-  const token = localStorage.getItem("token");
-  console.log("token", token);
-  useEffect(() => {
-    if (!token) {
-      navigate("/admin_login");
-    }
-  }, [token, navigate]);
-
   const data = [
-    {
-      title: "Total Orders",
-      icon: <OrderedListOutlined className="text-blue-500" />,
-      counting: 10,
-    },
     {
       title: "Total Products",
       icon: <ProductOutlined className="text-blue-500" />,
       counting: 100,
+    },
+    {
+      title: "Total Orders",
+      icon: <OrderedListOutlined className="text-blue-500" />,
+      counting: 10,
     },
     {
       title: "Total Users",
@@ -41,7 +29,6 @@ const Dashboard = () => {
       {/* Headers */}
 
       <div className="flex h-screen">
-        <Sidebar />
         <div className="w-full px-2">
           <div className="grid grid-cols-3 gap-12">
             {data.map((item, index) => (

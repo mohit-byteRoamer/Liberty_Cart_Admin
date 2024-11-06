@@ -14,7 +14,11 @@ const AppHeader = () => {
         {/* LOGO Section */}
         <div className="logo w-2/12">
           <Link to="/">
-            <img src={logo} alt="logo" className="h-14 w-52 cursor-pointer" />
+            <img
+              src={logo}
+              alt="logo"
+              className="h-14 min-w-48 cursor-pointer"
+            />
           </Link>
         </div>
 

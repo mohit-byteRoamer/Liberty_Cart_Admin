@@ -1,6 +1,6 @@
 import reduxConstants from "../constants/reduxConstants";
 
-// Login Action
+// --------------------- LOGIN ACTION --------------------- //
 export const logInActionLoad = (payload) => ({
   type: reduxConstants.LOGIN_LOAD,
   payload,
@@ -16,7 +16,7 @@ export const logInActionsFail = () => ({
 });
 // -------------------------------------------------------- //
 
-// Logout Action
+// -------------------- LOGOUT ACTION --------------------- //
 export const logoutActionLoad = (payload) => ({
   type: reduxConstants.LOGOUT_LOAD,
   payload,
