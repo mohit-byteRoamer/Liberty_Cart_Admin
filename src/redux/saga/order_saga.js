@@ -14,8 +14,8 @@ export function* getAllOrdersSaga() {
     if (status === 1) {
       yield put(getAllOrderActionSuccess(result?.data));
     } else {
-      yield put(getAllOrderActionFail(result?.message));
-      toast.error("Internal Server Error");
+      yield put(getAllOrderActionFail(result?.data));
+      toast.error(result?.message);
     }
   } catch (error) {
     yield put(getAllOrderActionFail(error));

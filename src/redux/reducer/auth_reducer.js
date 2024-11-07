@@ -5,7 +5,7 @@ const initialState = {
   loginData: {},
 };
 
-function AuthReducer(state = initialState, action) {
+export function AuthReducer(state = initialState, action) {
   switch (action.type) {
     // Login Reducer
 
@@ -25,7 +25,7 @@ function AuthReducer(state = initialState, action) {
       return { ...state };
     }
     case reduxConstants.LOGOUT_SUCCESS: {
-      return { ...state, };
+      return { ...state };
     }
     case reduxConstants.LOGOUT_FAIL: {
       return { ...state };
@@ -37,5 +37,3 @@ function AuthReducer(state = initialState, action) {
       return state;
   }
 }
-
-export default AuthReducer;

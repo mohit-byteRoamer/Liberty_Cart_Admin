@@ -1,12 +1,13 @@
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Dashboard from "./components/Dashboard";
 import Login from "./page/Login";
-import AppHeader from "./components/AppHeader/Header";
-import { UnProtectedRoute } from "./components/Route/UnProtectedRoute";
-import { ProtectedRoute } from "./components/Route/ProtectedRoute";
-import AllOrders from "./components/Orders/AllOrders";
 import Sidebar from "./components/Sidebar";
+import Dashboard from "./components/Dashboard";
+import AppHeader from "./components/AppHeader/Header";
+import AllOrders from "./components/Orders/AllOrders";
+import AllProducts from "./components/Products/AllProducts";
+import { Route, Routes } from "react-router-dom";
+import { ProtectedRoute } from "./components/Route/ProtectedRoute";
+import { UnProtectedRoute } from "./components/Route/UnProtectedRoute";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -43,6 +44,10 @@ function App() {
                 <Route
                   path="/orders"
                   element={<ProtectedRoute Component={AllOrders} />}
+                />
+                <Route
+                  path="/products"
+                  element={<ProtectedRoute Component={AllProducts} />}
                 />
               </Routes>
             </div>

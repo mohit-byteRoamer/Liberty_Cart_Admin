@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Popover } from "antd";
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { IoIosHelpCircleOutline } from "react-icons/io";
-import { RxCodesandboxLogo } from "react-icons/rx";
 import { HiOutlineUserGroup } from "react-icons/hi";
-import { TbShoppingCartHeart } from "react-icons/tb";
 import LogOutBtn from "../Buttons/LogOutBtn";
 import {
   GiftOutlined,
@@ -13,9 +10,11 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 export function PopOver() {
   const user = JSON.parse(localStorage.getItem("user"));
+  const [isPopOverOpen, setIsPopOverOpen] = useState(false);
   console.log("USER", user);
 
   // Add a check if logInUser is undefined or null
@@ -51,6 +50,8 @@ export function PopOver() {
   const handlePopoverClick = () => {
     if (!user) {
       toast.error("User is not logged in");
+    } else {
+      setIsPopOverOpen(!isPopOverOpen);
     }
   };
 
@@ -128,8 +129,10 @@ export function PopOver() {
     <div onClick={handlePopoverClick}>
       <Popover
         trigger="click"
-        className="popover rounded-full overflow-hidden flex items-center gap-2 cursor-pointer p-1"
         content={user ? content : ""}
+        onClick={handlePopoverClick}
+        open={isPopOverOpen}
+        className="popover rounded-full overflow-hidden flex items-center gap-2 cursor-pointer p-1"
       >
         {/* Avatar */}
         <div>
@@ -147,9 +150,7 @@ export function PopOver() {
             <h1 className="text-base font-semibold">{fullName}</h1>
           </div>
         )}
-        <div>
-          <FaAngleDown />
-        </div>
+        <div>{isPopOverOpen ? <FaAngleUp /> : <FaAngleDown />}</div>
       </Popover>
     </div>
   );

@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Table } from "antd";
 import moment from "moment";
 import ViewButton from "./ViewButton";
+import { LiaRupeeSignSolid } from "react-icons/lia";
 
 function AllOrders() {
   const dispatch = useDispatch();
@@ -58,7 +59,16 @@ function AllOrders() {
     { title: "Status", dataIndex: "status", key: "status" },
 
     // Total
-    { title: "Total", dataIndex: "total", key: "total" },
+    {
+      title: "Total",
+      dataIndex: "total",
+      key: "total",
+      render: (text) => (
+        <span className="flex items-center">
+          <LiaRupeeSignSolid /> {text}
+        </span>
+      ),
+    },
 
     // View
     {
