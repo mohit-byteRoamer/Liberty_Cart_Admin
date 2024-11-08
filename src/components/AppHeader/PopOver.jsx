@@ -18,9 +18,11 @@ export function PopOver() {
   console.log("USER", user);
 
   // Add a check if logInUser is undefined or null
-  const avatar = user?.avatar;
-  const fullName = user?.fullName;
-  const email = user?.email;
+  const avatar =
+    user?.avatar ||
+    "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?w=740&t=st=1727265106~exp=1727265706~hmac=2b48b806a6a6340dc45204ff038df0765e3e1cdc1a49613b2f694be2d2a70add";
+  const fullName = user?.fullName || "Guest";
+  const email = user?.email || "guest@example.com";
   // const userName = user?.userName;
 
   const title = (
@@ -130,7 +132,6 @@ export function PopOver() {
       <Popover
         trigger="click"
         content={user ? content : ""}
-        onClick={handlePopoverClick}
         open={isPopOverOpen}
         className="popover rounded-full overflow-hidden flex items-center gap-2 cursor-pointer p-1"
       >
@@ -138,10 +139,7 @@ export function PopOver() {
         <div>
           <img
             className="w-10 h-10 rounded-full object-cover"
-            src={
-              avatar ||
-              "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?w=740&t=st=1727265106~exp=1727265706~hmac=2b48b806a6a6340dc45204ff038df0765e3e1cdc1a49613b2f694be2d2a70add"
-            }
+            src={avatar}
             alt="Avatar"
           />
         </div>

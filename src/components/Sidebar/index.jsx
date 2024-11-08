@@ -25,7 +25,7 @@ const Sidebar = () => {
     { label: "Users", key: "users", icon: <UserOutlined />, path: "/users" },
   ];
   return (
-    <div className="w-1/5 bg-white shadow-md h-full">
+    <div className="w-1/5 bg-white shadow-md h-[100vh]">
       <Menu
         mode="inline"
         defaultSelectedKeys={["dashboard"]}

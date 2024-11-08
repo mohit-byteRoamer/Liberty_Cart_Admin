@@ -7,9 +7,11 @@ import {
   getAllProductsActionSuccess,
 } from "../action/product_action";
 
-export function* getAllProductsSaga() {
+export function* getAllProductsSaga(action) {
+  console.log("GetAllProductsSaga", action.payload);
+  
   try {
-    const response = yield call(getAllProducts_API);
+    const response = yield call(getAllProducts_API, action.payload);
     console.log("Get_All_Product_Saga_Response", response);
     const { result, status } = response;
     if (status === 1) {

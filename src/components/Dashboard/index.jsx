@@ -41,7 +41,7 @@ const Dashboard = () => {
                   <div className="flex flex-col">
                     <span className="text-lg font-medium">{item.title}</span>
                     <span className="text-2xl font-semibold mt-1">
-                      {item.amount}
+                      {item.counting}
                     </span>
                     <span className="text-sm text-gray-500">
                       {item.counting}

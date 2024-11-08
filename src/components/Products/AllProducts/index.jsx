@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import moment from "moment";
-import { Table } from "antd";
+import { Button, Table } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProductsActionLoad } from "../../../redux/action/product_action";
@@ -8,18 +8,30 @@ import { LiaRupeeSignSolid } from "react-icons/lia";
 
 function AllProducts() {
   const dispatch = useDispatch();
-  const pageSize = 5;
+  const pageSize = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const allProducts = useSelector((state) => state?.ProductReducer);
-  console.log(
-    "ALL_PRODUCT_DATA_FETCH",
-    allProducts?.getAllProductsData?.Products?.length
-  );
+  console.log("allProducts_Data", allProducts?.getAllProductsData?.totalPage);
 
+  // -------------------------- UseEffect --------------------------- //
   useEffect(() => {
-    dispatch(getAllProductsActionLoad());
-  }, []);
+    dispatch(getAllProductsActionLoad(currentPage));
+  }, [currentPage]);
+  // ---------------------------------------------------------------- //
 
+  // ---------------- Edit Handler Button's Function ---------------- //
+  const editHandler = (record) => {
+    console.log(record);
+  };
+  // ---------------------------------------------------------------- //
+
+  // --------------- Delete Handler Button's Function --------------- //
+  const deleteHandler = (record) => {
+    console.log(record);
+  };
+  // ---------------------------------------------------------------- //
+
+  // ---------------------------- Column ---------------------------- //
   const column = [
     // Serial Number
     {
@@ -37,6 +49,7 @@ function AllProducts() {
         text ? moment(text).format("DD/MM/YYYY | HH:mm:ss") : "Invalid Date",
     },
 
+    // Product_Id
     { title: "Product_id", dataIndex: "_id", key: "_id" },
 
     // Updated At
@@ -50,7 +63,7 @@ function AllProducts() {
 
     // User Name
     {
-      title: "User Name",
+      title: "Product Name",
       key: "name",
       render: (text, record) => {
         const userName = record?.name.toUpperCase() || "N/A";
@@ -60,14 +73,15 @@ function AllProducts() {
       },
     },
 
+    // Category
     { title: "Category", dataIndex: "category", key: "category" },
 
     // Status
     { title: "Stock", dataIndex: "stock", key: "stock" },
 
-    // Total
+    // Price
     {
-      title: "Price",
+      title: "Product Price",
       dataIndex: "price",
       key: "price",
       render: (text) => (
@@ -86,7 +100,33 @@ function AllProducts() {
         <img className="w-10" src={photo} alt={record?.name} />
       ),
     },
+
+    // Actions
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <div className="flex">
+          <Button
+            onClick={() => editHandler(record._id)}
+            type="primary"
+            className="px-2 py-1 rounded mr-2"
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={() => deleteHandler(record._id)}
+            type="primary"
+            danger
+            className="px-2 py-1 rounded"
+          >
+            Delete
+          </Button>
+        </div>
+      ),
+    },
   ];
+  // ---------------------------------------------------------------- //
 
   return (
     <div className="container mx-auto shadow-lg">
@@ -97,7 +137,7 @@ function AllProducts() {
         rowKey={(record) => record._id}
         pagination={{
           current: currentPage,
-          total: allProducts?.getAllProductsData?.Products?.length,
+          total: allProducts?.getAllProductsData?.totalPage * pageSize,
           onChange: (page) => {
             setCurrentPage(page);
             dispatch(getAllProductsActionLoad(page));
