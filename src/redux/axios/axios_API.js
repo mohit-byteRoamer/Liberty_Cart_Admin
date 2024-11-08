@@ -20,5 +20,8 @@ export const getAllOrders_API = () => Method.GET("/order/allOrder", header);
 // ---------------------------------------------------------------------------------- //
 
 // PRODUCT API'S
-export const getAllProducts_API = (pageNumber) => Method.GET(`/product/all?page=${pageNumber}`, header);
+export const getAllProducts_API = (pageNumber) =>
+  Method.GET(`/product/all?page=${pageNumber}`, header);
+export const editProduct_API = (id, data) =>
+  Method.GET(`/product/${id}`, data, header);
 // ---------------------------------------------------------------------------------- //

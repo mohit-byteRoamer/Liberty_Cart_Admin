@@ -2,12 +2,14 @@
 import moment from "moment";
 import { Button, Table } from "antd";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProductsActionLoad } from "../../../redux/action/product_action";
 import { LiaRupeeSignSolid } from "react-icons/lia";
 
 function AllProducts() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const pageSize = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const allProducts = useSelector((state) => state?.ProductReducer);
@@ -20,8 +22,9 @@ function AllProducts() {
   // ---------------------------------------------------------------- //
 
   // ---------------- Edit Handler Button's Function ---------------- //
-  const editHandler = (record) => {
-    console.log(record);
+  const editHandler = (id) => {
+    navigate(`/editProduct/${id}`);
+    console.log("ID", id);
   };
   // ---------------------------------------------------------------- //
 

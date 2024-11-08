@@ -8,6 +8,7 @@ import AllProducts from "./components/Products/AllProducts";
 import { Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./components/Route/ProtectedRoute";
 import { UnProtectedRoute } from "./components/Route/UnProtectedRoute";
+import EditProduct from "./components/Products/EditProduct";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -48,6 +49,10 @@ function App() {
                 <Route
                   path="/products"
                   element={<ProtectedRoute Component={AllProducts} />}
+                />
+                <Route
+                  path="/editProduct:id"
+                  element={<ProtectedRoute Component={EditProduct} />}
                 />
               </Routes>
             </div>
