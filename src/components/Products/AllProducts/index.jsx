@@ -1,92 +1,112 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-// import { useSelector } from "react-redux";
-// import { Table } from "antd";
-// import moment from "moment";
-// import ViewButton from "./ViewButton";
-// import { LiaRupeeSignSolid } from "react-icons/lia";
+import moment from "moment";
+import { Table } from "antd";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { getAllProductsActionLoad } from "../../../redux/action/product_action";
+import { LiaRupeeSignSolid } from "react-icons/lia";
 
 function AllProducts() {
   const dispatch = useDispatch();
-//   const allOrderData = useSelector((state) => state?.OrderReducer);
-//   console.log("ALL_ORDER_DATA_FETCH", allOrderData?.getAllProductsData);
+  const pageSize = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+  const allProducts = useSelector((state) => state?.ProductReducer);
+  console.log(
+    "ALL_PRODUCT_DATA_FETCH",
+    allProducts?.getAllProductsData?.Products?.length
+  );
 
   useEffect(() => {
     dispatch(getAllProductsActionLoad());
   }, []);
 
-//   const column = [
-//     // Serial Number
-//     {
-//       title: "S.No.",
-//       key: "serial",
-//       render: (text, record, index) => index + 1,
-//     },
+  const column = [
+    // Serial Number
+    {
+      title: "S.No.",
+      key: "serial",
+      render: (text, record, index) => index + 1 + pageSize * (currentPage - 1),
+    },
 
-//     // Id
-//     { title: "Order Id", dataIndex: "_id", key: "_id" },
+    // Created At
+    {
+      title: "Product Created Date | Time",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (text) =>
+        text ? moment(text).format("DD/MM/YYYY | HH:mm:ss") : "Invalid Date",
+    },
 
-//     // Created At
-//     {
-//       title: "Order Date | Time",
-//       dataIndex: "createdAt",
-//       key: "createdAt",
-//       render: (text) =>
-//         text ? moment(text).format("DD/MM/YYYY | HH:mm:ss") : "Invalid Date",
-//     },
+    { title: "Product_id", dataIndex: "_id", key: "_id" },
 
-//     // User Name
-//     {
-//       title: "User Name",
-//       key: "name",
-//       render: (text, record) => {
-//         const userName = record.user?.userName.toUpperCase() || "N/A";
-//         return userName !== "N/A"
-//           ? userName.charAt(0).toUpperCase() + userName.slice(1).toLowerCase()
-//           : userName;
-//       },
-//     },
+    // Updated At
+    {
+      title: "Product Updated | Time",
+      dataIndex: "updatedAt",
+      key: "updatedAt",
+      render: (text) =>
+        text ? moment(text).format("DD/MM/YYYY | HH:mm:ss") : "Invalid Date",
+    },
 
-//     {
-//       title: "Quantity",
-//       key: "name",
-//       render: (text, record) => record?.orderItems?.[0]?.quantity || "N/A",
-//     },
+    // User Name
+    {
+      title: "User Name",
+      key: "name",
+      render: (text, record) => {
+        const userName = record?.name.toUpperCase() || "N/A";
+        return userName !== "N/A"
+          ? userName.charAt(0).toUpperCase() + userName.slice(1).toLowerCase()
+          : userName;
+      },
+    },
 
-//     // Status
-//     { title: "Status", dataIndex: "status", key: "status" },
+    { title: "Category", dataIndex: "category", key: "category" },
 
-//     // Total
-//     {
-//       title: "Total",
-//       dataIndex: "total",
-//       key: "total",
-//       render: (text) => (
-//         <span className="flex items-center">
-//           <LiaRupeeSignSolid /> {text}
-//         </span>
-//       ),
-//     },
+    // Status
+    { title: "Stock", dataIndex: "stock", key: "stock" },
 
-//     // View
-//     {
-//       title: "View Order",
-//       key: "view",
-//       render: (text, record) => (
-//         <ViewButton order={record} /> // Pass the order details to ViewButton
-//       ),
-//     },
-//   ];
+    // Total
+    {
+      title: "Price",
+      dataIndex: "price",
+      key: "price",
+      render: (text) => (
+        <span className="flex items-center">
+          <LiaRupeeSignSolid /> {text}
+        </span>
+      ),
+    },
+
+    // Image
+    {
+      title: "Product Image",
+      dataIndex: "photo", // Make sure your product data contains an "image" field
+      key: "photo",
+      render: (photo, record) => (
+        <img className="w-10" src={photo} alt={record?.name} />
+      ),
+    },
+  ];
 
   return (
     <div className="container mx-auto shadow-lg">
-      {/* <Table
+      <Table
         columns={column}
-        loading={allOrderData?.getAllProductsLoader}
-        dataSource={allOrderData?.getAllProductsData}
-      /> */}
+        loading={allProducts?.getAllProductsLoader}
+        dataSource={allProducts?.getAllProductsData?.Products}
+        rowKey={(record) => record._id}
+        pagination={{
+          current: currentPage,
+          total: allProducts?.getAllProductsData?.Products?.length,
+          onChange: (page) => {
+            setCurrentPage(page);
+            dispatch(getAllProductsActionLoad(page));
+          },
+          pageSize: pageSize,
+          showSizeChanger: true,
+          pageSizeOptions: ["10", "20", "30", "40"],
+        }}
+      />
     </div>
   );
 }
