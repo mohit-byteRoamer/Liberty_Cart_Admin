@@ -23,6 +23,12 @@ const reduxConstants = {
   GET_ALL_PRODUCTS_SUCCESS: "GET_ALL_PRODUCTS_SUCCESS",
   GET_ALL_PRODUCTS_FAIL: "GET_ALL_PRODUCTS_FAIL",
   // ---------------------------------------------------- //
+
+  // ------------------- EDIT_PRODUCTS ------------------ //
+  EDIT_PRODUCT_LOAD: "EDIT_PRODUCT_LOAD",
+  EDIT_PRODUCT_SUCCESS: "EDIT_PRODUCT_SUCCESS",
+  EDIT_PRODUCT_FAIL: "EDIT_PRODUCT_FAIL",
+  // ---------------------------------------------------- //
 };
 
 export default reduxConstants;

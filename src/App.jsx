@@ -21,45 +21,43 @@ function App() {
   }
 
   return (
-    <>
-      {token && <AppHeader />}
-      <div className="container mx-auto">
-        <div className="flex-grow">
-          <div className="flex h-screen">
-            {/* ---------------------- Side_Bar ----------------------*/}
-            <Sidebar />
-            {/* ---------------------- Content ----------------------*/}
+    <div className="relative">
+      {token && (
+        <AppHeader className="fixed top-0 left-0 right-0 z-50 w-full" />
+      )}
+      <div className="flex h-vh pt-[7%] container mx-auto">
+        {/* ---------------------- Side_Bar ----------------------*/}
+        <Sidebar className="fixed h-[100vh] top-[15%] left-0 z-40" />
+        {/* ---------------------- Content ----------------------*/}
 
-            <div className="w-[100vw]">
-              <Routes>
-                {/* ----------------------- UnProtected_Route -----------------------  */}
-                <Route
-                  path="/admin_login"
-                  element={<UnProtectedRoute Component={Login} />}
-                />
-                {/* ------------------------ Protected_Route ------------------------  */}
-                <Route
-                  path="/"
-                  element={<ProtectedRoute Component={Dashboard} />}
-                />
-                <Route
-                  path="/orders"
-                  element={<ProtectedRoute Component={AllOrders} />}
-                />
-                <Route
-                  path="/products"
-                  element={<ProtectedRoute Component={AllProducts} />}
-                />
-                <Route
-                  path="/editProduct:id"
-                  element={<ProtectedRoute Component={EditProduct} />}
-                />
-              </Routes>
-            </div>
-          </div>
+        <div className="w-full ml-60">
+          <Routes>
+            {/* ----------------------- UnProtected_Route -----------------------  */}
+            <Route
+              path="/admin_login"
+              element={<UnProtectedRoute Component={Login} />}
+            />
+            {/* ------------------------ Protected_Route ------------------------  */}
+            <Route
+              path="/"
+              element={<ProtectedRoute Component={Dashboard} />}
+            />
+            <Route
+              path="/orders"
+              element={<ProtectedRoute Component={AllOrders} />}
+            />
+            <Route
+              path="/product/admin-products"
+              element={<ProtectedRoute Component={AllProducts} />}
+            />
+            <Route
+              path="/editProduct/:id"
+              element={<ProtectedRoute Component={EditProduct} />}
+            />
+          </Routes>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

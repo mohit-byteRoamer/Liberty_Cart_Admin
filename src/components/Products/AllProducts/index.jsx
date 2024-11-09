@@ -10,14 +10,14 @@ import { LiaRupeeSignSolid } from "react-icons/lia";
 function AllProducts() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const pageSize = 10;
+  const pageSize = 4;
   const [currentPage, setCurrentPage] = useState(1);
   const allProducts = useSelector((state) => state?.ProductReducer);
-  console.log("allProducts_Data", allProducts?.getAllProductsData?.totalPage);
+  console.log("allProducts_Data", allProducts?.getAllProductsData);
 
   // -------------------------- UseEffect --------------------------- //
   useEffect(() => {
-    dispatch(getAllProductsActionLoad(currentPage));
+    dispatch(getAllProductsActionLoad({ currentPage, pageSize }));
   }, [currentPage]);
   // ---------------------------------------------------------------- //
 
@@ -43,26 +43,18 @@ function AllProducts() {
       render: (text, record, index) => index + 1 + pageSize * (currentPage - 1),
     },
 
-    // Created At
+    // Image
     {
-      title: "Product Created Date | Time",
-      dataIndex: "createdAt",
-      key: "createdAt",
-      render: (text) =>
-        text ? moment(text).format("DD/MM/YYYY | HH:mm:ss") : "Invalid Date",
+      title: "Product Image",
+      dataIndex: "photo", // Make sure your product data contains an "image" field
+      key: "photo",
+      render: (photo, record) => (
+        <img className="w-10" src={photo} alt={record?.name} />
+      ),
     },
 
     // Product_Id
     { title: "Product_id", dataIndex: "_id", key: "_id" },
-
-    // Updated At
-    {
-      title: "Product Updated | Time",
-      dataIndex: "updatedAt",
-      key: "updatedAt",
-      render: (text) =>
-        text ? moment(text).format("DD/MM/YYYY | HH:mm:ss") : "Invalid Date",
-    },
 
     // User Name
     {
@@ -94,14 +86,13 @@ function AllProducts() {
       ),
     },
 
-    // Image
+    // Created At
     {
-      title: "Product Image",
-      dataIndex: "photo", // Make sure your product data contains an "image" field
-      key: "photo",
-      render: (photo, record) => (
-        <img className="w-10" src={photo} alt={record?.name} />
-      ),
+      title: "Product Created",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (text) =>
+        text ? moment(text).format("DD/MM/YYYY | HH:mm:ss") : "Invalid Date",
     },
 
     // Actions
@@ -136,18 +127,15 @@ function AllProducts() {
       <Table
         columns={column}
         loading={allProducts?.getAllProductsLoader}
-        dataSource={allProducts?.getAllProductsData?.Products}
+        dataSource={allProducts?.getAllProductsData}
         rowKey={(record) => record._id}
         pagination={{
           current: currentPage,
           total: allProducts?.getAllProductsData?.totalPage * pageSize,
           onChange: (page) => {
             setCurrentPage(page);
-            dispatch(getAllProductsActionLoad(page));
           },
           pageSize: pageSize,
-          showSizeChanger: true,
-          pageSizeOptions: ["10", "20", "30", "40"],
         }}
       />
     </div>

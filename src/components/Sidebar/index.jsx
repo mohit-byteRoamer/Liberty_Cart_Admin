@@ -7,14 +7,14 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({className}) => {
   const menuItems = [
     { label: "Dashboard", key: "dashboard", icon: <HomeOutlined />, path: "/" },
     {
       label: "Products",
       key: "products",
       icon: <ProductOutlined />,
-      path: "/products",
+      path: "/product/admin-products",
     },
     {
       label: "Orders",
@@ -25,12 +25,10 @@ const Sidebar = () => {
     { label: "Users", key: "users", icon: <UserOutlined />, path: "/users" },
   ];
   return (
-    <div className="w-1/5 bg-white shadow-md h-[100vh]">
+    <div className={`w-1/5 bg-white shadow-md ${className}`}>
       <Menu
         mode="inline"
         defaultSelectedKeys={["dashboard"]}
-        style={{ height: "100%" }}
-        className="h-full"
       >
         {menuItems.map((item) => (
           <Menu.Item key={item.key} icon={item.icon}>

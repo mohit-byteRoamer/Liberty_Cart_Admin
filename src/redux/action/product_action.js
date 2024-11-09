@@ -16,3 +16,20 @@ export const getAllProductsActionFail = (payload) => ({
   payload,
 });
 // ------------------------------------------------------- //
+
+// ---------------- EDIT_PRODUCTS_ACTION ----------------- //
+export const editProductActionLoad = (payload) => ({
+  type: reduxConstants.EDIT_PRODUCT_LOAD,
+  payload,
+});
+
+export const editProductActionSuccess = (payload) => ({
+  type: reduxConstants.EDIT_PRODUCT_SUCCESS,
+  payload,
+});
+
+export const editProductActionFail = (payload) => ({
+  type: reduxConstants.EDIT_PRODUCT_FAIL,
+  payload,
+});
+// ------------------------------------------------------- //
