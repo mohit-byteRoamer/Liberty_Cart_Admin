@@ -7,6 +7,7 @@ import {
   logoutActionSuccess,
 } from "../action/auth_action";
 import toast from "react-hot-toast";
+import { ConstantRoutes } from "../../components/Route/ConstantsRoutes";
 
 // Login_Saga
 export function* loginSaga(action) {
@@ -50,7 +51,7 @@ export function* logoutSaga(action) {
       toast.success(result?.message);
       window.location.reload()
 
-      navigate("/admin_login");
+      navigate(ConstantRoutes.LOGIN);
     } else {
       yield put(logoutActionsFail(result?.data));
       toast.error(result?.message);

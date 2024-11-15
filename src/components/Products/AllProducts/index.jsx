@@ -4,7 +4,7 @@ import { Button, Table } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllProductsActionLoad } from "../../../redux/action/product_action";
+import { deleteProductActionLoad, getAllProductsActionLoad } from "../../../redux/action/product_action";
 import { LiaRupeeSignSolid } from "react-icons/lia";
 
 function AllProducts() {
@@ -15,7 +15,7 @@ function AllProducts() {
   const allProducts = useSelector((state) => state?.ProductReducer);
   console.log("allProducts_Data", allProducts?.getAllProductsData);
 
-  // -------------------------- UseEffect --------------------------- //
+  // ------------ UseEffect for getAllProductsActionLoad ------------ //
   useEffect(() => {
     dispatch(getAllProductsActionLoad({ currentPage, pageSize }));
   }, [currentPage]);
@@ -29,8 +29,9 @@ function AllProducts() {
   // ---------------------------------------------------------------- //
 
   // --------------- Delete Handler Button's Function --------------- //
-  const deleteHandler = (record) => {
-    console.log(record);
+  const deleteHandler = (id) => {
+    console.log(id, currentPage,pageSize);
+    dispatch(deleteProductActionLoad({id, currentPage, pageSize}))
   };
   // ---------------------------------------------------------------- //
 

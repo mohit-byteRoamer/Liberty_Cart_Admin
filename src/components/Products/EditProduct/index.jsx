@@ -1,28 +1,46 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Controller, useForm } from "react-hook-form";
 import { Input, Select } from "antd";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { editProductActionLoad } from "../../../redux/action/product_action";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { getProductDetailActionLoad, updateProductActionLoad } from "../../../redux/action/product_action";
 import { useEffect } from "react";
+import UploadImage from "../../Image";
 
 function EditProduct() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const product = useSelector((data) => data?.ProductReducer);
   const {
     handleSubmit,
     control,
-    forState: { errors },
+    formState: { errors },
     reset,
   } = useForm();
 
   useEffect(() => {
-    dispatch(get)
-  })
+    if (product?.getProductDetailData) {
+      reset({
+        name: product?.getProductDetailData?.name || "",
+        price: product?.getProductDetailData?.price || "",
+        stock: product?.getProductDetailData?.stock || "",
+        category: product?.getProductDetailData?.category || "",
+      });
+    }
+  }, [product?.getProductDetailData]);
+
+  useEffect(() => {
+    dispatch(getProductDetailActionLoad(id));
+  }, [id]);
 
   const onUpdateSubmit = (data) => {
-    console.log(data);
-    // dispatch(editProductActionLoad({ id, data }));
-    // reset();
+    const updateData = {
+      ...data,
+      id: product?.getProductDetailData?._id,
+    };
+    console.log("UpdateData", updateData);
+    dispatch(updateProductActionLoad({ updateData, navigate }));
   };
 
   return (
@@ -50,6 +68,7 @@ function EditProduct() {
           <Controller
             name="price"
             control={control}
+            rules={{ required: "Price is required" }}
             render={({ field }) => (
               <input
                 {...field}
@@ -70,6 +89,7 @@ function EditProduct() {
           <Controller
             name="stock"
             control={control}
+            rules={{ required: "Stock is required" }}
             render={({ field }) => (
               <input
                 {...field}
@@ -79,7 +99,7 @@ function EditProduct() {
               />
             )}
           />
-          {errors.Stock && <span className="text-red-500">{errors.Stock.message}</span>}
+          {errors.stock && <span className="text-red-500">{errors.stock.message}</span>}
         </div>
 
         {/* Category */}
@@ -110,7 +130,10 @@ function EditProduct() {
           />
           {errors.category && <span className="text-red-500">{errors.category.message}</span>}
         </div>
-        
+
+        {/* Image */}
+        <UploadImage photo={product?.getProductDetailData?.photo} />
+
         <div className="flex justify-end">
           <button
             type="submit"

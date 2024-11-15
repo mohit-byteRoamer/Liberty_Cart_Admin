@@ -9,13 +9,14 @@ import { Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./components/Route/ProtectedRoute";
 import { UnProtectedRoute } from "./components/Route/UnProtectedRoute";
 import EditProduct from "./components/Products/EditProduct";
+import { ConstantRoutes } from "./components/Route/ConstantsRoutes";
 
 function App() {
   const token = localStorage.getItem("token");
   if (!token) {
     return (
       <Routes>
-        <Route path="*" element={<UnProtectedRoute Component={Login} />} />
+        <Route path={ConstantRoutes.NOTFOUND} element={<UnProtectedRoute Component={Login} />} />
       </Routes>
     );
   }
@@ -34,24 +35,24 @@ function App() {
           <Routes>
             {/* ----------------------- UnProtected_Route -----------------------  */}
             <Route
-              path="/admin_login"
+              path={ConstantRoutes.LOGIN}
               element={<UnProtectedRoute Component={Login} />}
             />
             {/* ------------------------ Protected_Route ------------------------  */}
             <Route
-              path="/"
+              path={ConstantRoutes.DASHBOARD}
               element={<ProtectedRoute Component={Dashboard} />}
             />
             <Route
-              path="/orders"
+              path={ConstantRoutes.ALL_ORDERS}
               element={<ProtectedRoute Component={AllOrders} />}
             />
             <Route
-              path="/product/admin-products"
+              path={ConstantRoutes.ALL_PRODUCTS}
               element={<ProtectedRoute Component={AllProducts} />}
             />
             <Route
-              path="/editProduct/:id"
+              path={ConstantRoutes.EDIT_PRODUCT}
               element={<ProtectedRoute Component={EditProduct} />}
             />
           </Routes>
