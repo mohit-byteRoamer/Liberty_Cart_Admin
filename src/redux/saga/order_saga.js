@@ -9,7 +9,6 @@ import {
 export function* getAllOrdersSaga() {
   try {
     let response = yield call(getAllOrders_API);
-    console.log("Get_All_Order_Saga_Response", response);
     const { result, status } = response;
     if (status === 1) {
       yield put(getAllOrderActionSuccess(result?.data));

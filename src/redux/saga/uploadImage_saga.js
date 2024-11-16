@@ -8,8 +8,6 @@ export function* UploadImageSaga(action) {
     const response = yield call(uploadFile_API, action.payload);
     const { result, status } = response;
     if (status === 1) {
-      console.log("Image_result", result);
-      
       yield put(UploadImageActionSuccess(result?.imageUrl));
       toast.success(result?.message);
     } else {

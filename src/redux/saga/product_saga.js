@@ -13,6 +13,7 @@ import {
   updateProductActionFail,
   updateProductActionSuccess,
 } from "../action/product_action";
+import { UploadImageActionSuccess } from "../action/uploadImage";
 
 // ---------------- GET_ALL_PRODUCTS_REDUCER ---------------- //
 export function* getAllProductsSaga(action) {
@@ -35,13 +36,12 @@ export function* getAllProductsSaga(action) {
 
 // --------------- GET_PRODUCT_DETAIL_REDUCER --------------- //
 export function* getProductDetailSaga(action) {
-  console.log("GetProductDetailSaga", action);
   try {
     const response = yield call(getProductDetail_API, action.payload);
-    console.log("Get_Product_Detail_Saga_Response", response);
     const { result, status } = response;
     if (status === 1) {
       yield put(getProductDetailActionSuccess(result?.data));
+      yield put(UploadImageActionSuccess(result?.data?.photo));
     } else {
       yield put(getProductDetailActionFail(result?.data));
       toast(result?.message);
@@ -80,26 +80,21 @@ export function* updateProductSaga(action) {
 
 // ----------------- DELETE_PRODUCTS_REDUCER ---------------- //
 export function* deleteProductSaga(action) {
-  console.log("Delete_Action", action);
 
   const { id, currentPage, pageSize } = action.payload;
   try {
     const response = yield call(deleteProduct_API, id);
-    console.log("Delete_Product_Saga_Response", response);
     const { result, status } = response;
     if (status === 1) {
-      console.log("DELETE_RESULT", result);
       yield put(deleteProductActionSuccess(result?.data));
-      yield put(getAllProductsActionLoad({currentPage, pageSize}));
+      yield put(getAllProductsActionLoad({ currentPage, pageSize }));
       toast.success(result?.message);
     } else {
       yield put(deleteProductActionFail(result?.data));
-      console.error("Delete Failed:", result?.message);
       toast(result?.message);
     }
   } catch (error) {
     yield put(deleteProductActionFail(error));
-    console.log("DELETE_ERROR", error);
     toast("Internal Server Error");
   }
 }

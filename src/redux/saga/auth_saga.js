@@ -16,10 +16,8 @@ export function* loginSaga(action) {
   try {
     const { navigate, apiPayload } = action.payload;
     let response = yield call(login_Api, apiPayload);
-    console.log("Login Response", response);
     const { result, status } = response;
     if (status === 1) {
-      console.log("RESULT", result?.data);
       yield put(logInActionSuccess(result?.data));
       toast.success(result?.message);
       localStorage.setItem("token", result?.data?.accessToken);
@@ -39,18 +37,15 @@ export function* loginSaga(action) {
 
 // Logout_Saga
 export function* logoutSaga(action) {
-  console.log("LOGOUT_SAGA", action.payload);
   const { navigate } = action.payload;
   try {
     const response = yield call(logout_Api);
-    console.log("Logout_Saga_Response", response);
     const { result, status } = response;
     if (status === 1) {
       yield put(logoutActionSuccess(result?.data));
       localStorage.clear()
       toast.success(result?.message);
       window.location.reload()
-
       navigate(ConstantRoutes.LOGIN);
     } else {
       yield put(logoutActionsFail(result?.data));

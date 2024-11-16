@@ -4,13 +4,10 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import LogOutBtn from "../Buttons/LogOutBtn";
-import {
-  GiftOutlined,
-  PlusSquareOutlined,
-  ShoppingCartOutlined,
-} from "@ant-design/icons";
+import { GiftOutlined, PlusSquareOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { ConstantRoutes } from "../Route/ConstantsRoutes";
 
 export function PopOver() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -29,11 +26,7 @@ export function PopOver() {
     <div className="flex items-center gap-2 p-1">
       <div>
         {avatar ? (
-          <img
-            className="w-10 h-10 rounded-full object-cover"
-            src={avatar}
-            alt="Avatar"
-          />
+          <img className="w-10 h-10 rounded-full object-cover" src={avatar} alt="Avatar" />
         ) : (
           <img
             className="w-10 h-10 rounded-full object-cover"
@@ -62,55 +55,43 @@ export function PopOver() {
       {/* Links */}
       <div>
         <ul className="w-56 space-y-2">
+          {/* Profile */}
           <li className="border-b-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
-            <Link
-              className="block w-full h-full p-2 hover:shadow-md"
-              to={"/profile"}
-            >
+            <Link className="block w-full h-full p-2 hover:shadow-md" to={ConstantRoutes.PROFILE}>
               {title}
             </Link>
           </li>
+          {/* Shopping_Cart */}
           <li className="text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
-            <Link
-              className="flex items-center gap-2 p-2 hover:shadow-md"
-              to={"/shoppingCart"}
-            >
+            <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={ConstantRoutes.SHOPPING_CART}>
               <ShoppingCartOutlined />
               Shopping Cart
             </Link>
           </li>
+          {/* Review Order */}
           <li className="text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
-            <Link
-              className="flex items-center gap-2 p-2 hover:shadow-md"
-              to={"/reviewOrder"}
-            >
+            <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={ConstantRoutes.REVIEW_ORDER}>
               <GiftOutlined />
               Review Order
             </Link>
           </li>
+          {/* Add Product */}
           <li className="border-b-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
-            <Link
-              className="flex items-center gap-2 p-2 hover:shadow-md"
-              to={"/addProduct"}
-            >
+            <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={ConstantRoutes.ADD_PRODUCT}>
               <PlusSquareOutlined />
               Add Products
             </Link>
           </li>
+          {/* Suggestion */}
           <li className="text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
-            <Link
-              className="flex items-center gap-2 p-2 hover:shadow-md"
-              to={"/suggestion"}
-            >
+            <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={ConstantRoutes.SUGGESTION}>
               <HiOutlineUserGroup />
               Suggestion
             </Link>
           </li>
+          {/* Help */}
           <li className="text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
-            <Link
-              className="flex items-center gap-2 p-2 hover:shadow-md"
-              to={"/help"}
-            >
+            <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={ConstantRoutes.HELP}>
               <IoIosHelpCircleOutline />
               Help
             </Link>
@@ -133,15 +114,10 @@ export function PopOver() {
         trigger="click"
         content={user ? content : ""}
         open={isPopOverOpen}
-        className="popover rounded-full overflow-hidden flex items-center gap-2 cursor-pointer p-1"
-      >
+        className="popover rounded-full overflow-hidden flex items-center gap-2 cursor-pointer p-1">
         {/* Avatar */}
         <div>
-          <img
-            className="w-10 h-10 rounded-full object-cover"
-            src={avatar}
-            alt="Avatar"
-          />
+          <img className="w-10 h-10 rounded-full object-cover" src={avatar} alt="Avatar" />
         </div>
         {user && (
           <div>

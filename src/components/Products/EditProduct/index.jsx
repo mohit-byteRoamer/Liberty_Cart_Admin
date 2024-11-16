@@ -12,6 +12,7 @@ function EditProduct() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const product = useSelector((data) => data?.ProductReducer);
+
   const {
     handleSubmit,
     control,
@@ -132,7 +133,7 @@ function EditProduct() {
         </div>
 
         {/* Image */}
-        <UploadImage photo={product?.getProductDetailData?.photo} />
+        <UploadImage />
 
         <div className="flex justify-end">
           <button

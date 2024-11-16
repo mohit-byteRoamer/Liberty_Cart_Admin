@@ -3,7 +3,7 @@ import ImgCrop from "antd-img-crop";
 import { useDispatch, useSelector } from "react-redux";
 import { UploadImageActionLoad } from "../../redux/action/uploadImage";
 
-const UploadImage = ({ photo }) => {
+const UploadImage = () => {
   const dispatch = useDispatch();
   const uploadImage = useSelector((data) => data?.UploadImageReducer);
   // Image validation before upload
@@ -56,7 +56,7 @@ const UploadImage = ({ photo }) => {
       </ImgCrop>
       <div>
         <img
-          src={uploadImage?.UploadImageData ? uploadImage?.UploadImageData : photo}
+          src={uploadImage?.UploadImageData}
           alt="Uploaded"
           style={{ maxWidth: "100px", maxHeight: "100px" }}
         />

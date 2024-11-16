@@ -15,7 +15,7 @@ export const ProductReducer = (state = initialState, action) => {
   switch (action.type) {
     // ---------------- GET_ALL_PRODUCTS_REDUCER ---------------- //
     case reduxConstants.GET_ALL_PRODUCTS_LOAD:
-      return { ...state, getAllProductsLoader: true };
+      return { ...state, getAllProductsLoader: true, UploadImageData: null };
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
     case reduxConstants.GET_ALL_PRODUCTS_SUCCESS:
       return { ...state, getAllProductsLoader: false, getAllProductsData: action.payload };

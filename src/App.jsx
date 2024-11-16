@@ -10,6 +10,7 @@ import { ProtectedRoute } from "./components/Route/ProtectedRoute";
 import { UnProtectedRoute } from "./components/Route/UnProtectedRoute";
 import EditProduct from "./components/Products/EditProduct";
 import { ConstantRoutes } from "./components/Route/ConstantsRoutes";
+import AddProduct from "./components/Products/AddProduct";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -50,6 +51,10 @@ function App() {
             <Route
               path={ConstantRoutes.ALL_PRODUCTS}
               element={<ProtectedRoute Component={AllProducts} />}
+            />
+            <Route
+              path={ConstantRoutes.ADD_PRODUCT}
+              element={<ProtectedRoute Component={AddProduct}/>}
             />
             <Route
               path={ConstantRoutes.EDIT_PRODUCT}
