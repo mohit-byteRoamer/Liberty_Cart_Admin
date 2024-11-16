@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { MdOutlineLogin } from "react-icons/md";
 import { logInActionLoad } from "../redux/action/auth_action";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -34,8 +35,7 @@ const Login = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
       transition={{ duration: 1 }}
-      className="container flex items-center justify-center max-w-full min-h-[100vh]"
-    >
+      className="container flex items-center justify-center max-w-full min-h-[100vh]">
       <div className="w-96 py-8 rounded-2xl shadow-xl flex items-center justify-center border-2">
         <div className="w-[90%]">
           <h1 className="text-3xl font-bold pb-4">Log in</h1>
@@ -44,7 +44,7 @@ const Login = () => {
           <form onSubmit={handleSubmit(onFinish)}>
             {/* EMAIL ADDRESS */}
             <div className="mb-4">
-              <label className="block text-sm font-medium">Email address</label>
+              {/* <label className="block text-sm font-medium">Email address</label> */}
 
               <Controller
                 name="email"
@@ -57,18 +57,16 @@ const Login = () => {
                   },
                 }}
                 render={({ field }) => (
-                  <Input {...field} allowClear placeholder="Email address" />
+                  <Input {...field} prefix={<UserOutlined />} allowClear placeholder="Email address" />
                 )}
               />
 
-              {errors.email && (
-                <p className="text-red-500">{errors.email.message}</p>
-              )}
+              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
             </div>
 
             {/* PASSWORD */}
             <div className="mb-4">
-              <label className="block text-sm font-medium">Password</label>
+              {/* <label className="block text-sm font-medium">Password</label> */}
               <Controller
                 name="password"
                 control={control}
@@ -84,21 +82,14 @@ const Login = () => {
                   },
                   pattern: {
                     value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/,
-                    message:
-                      "Password must contain at least one letter and one number",
+                    message: "Password must contain at least one letter and one number",
                   },
                 }}
                 render={({ field }) => (
-                  <Input.Password
-                    {...field}
-                    allowClear
-                    placeholder="Password"
-                  />
+                  <Input.Password {...field} prefix={<LockOutlined />} allowClear type="password" placeholder="Password" />
                 )}
               />
-              {errors.password && (
-                <p className="text-red-500">{errors.password.message}</p>
-              )}
+              {errors.password && <p className="text-red-500">{errors.password.message}</p>}
             </div>
 
             {/* Button */}
@@ -107,16 +98,12 @@ const Login = () => {
               loading={logInLoader}
               type="primary"
               htmlType="submit"
-              disabled={Object.keys(errors).length > 0}
-            >
+              disabled={Object.keys(errors).length > 0}>
               <MdOutlineLogin />
               Log in
             </Button>
 
-            <Link
-              to="/forgot-password"
-              className="text-blue-500 hover:underline"
-            >
+            <Link to="/forgot-password" className="text-blue-500 hover:underline">
               <Button className="border-none w-full" type="dashed">
                 Forgot password?
               </Button>

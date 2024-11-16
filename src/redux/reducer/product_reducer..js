@@ -1,18 +1,31 @@
 import reduxConstants from "../constants/reduxConstants";
 
 const initialState = {
-  getAllProductsLoader: false,
-  getAllProductsData: [],
+  createProductLoader: false,
+  createProductData: {},
   updateProductLoader: false,
   updateProductData: {},
-  getProductDetailLoader: false,
-  getProductDetailData: {},
   deleteProductLoader: false,
   deleteProductData: {},
+  getProductDetailLoader: false,
+  getProductDetailData: {},
+  getAllProductsLoader: false,
+  getAllProductsData: [],
 };
 
 export const ProductReducer = (state = initialState, action) => {
   switch (action.type) {
+    // ----------------- CREATE_PRODUCT_REDUCER ----------------- //
+    case reduxConstants.CREATE_PRODUCT_LOAD:
+      return { ...state, createProductLoader: true };
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+    case reduxConstants.CREATE_PRODUCT_SUCCESS:
+      return { ...state, createProductLoader: false, createProductData: action.payload };
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+    case reduxConstants.CREATE_PRODUCT_FAIL:
+      return { ...state, createProductLoader: false };
+    // ---------------------------------------------------------- //
+
     // ---------------- GET_ALL_PRODUCTS_REDUCER ---------------- //
     case reduxConstants.GET_ALL_PRODUCTS_LOAD:
       return { ...state, getAllProductsLoader: true, UploadImageData: null };

@@ -1,9 +1,9 @@
-import { message, Upload } from "antd";
+import { message, Spin, Upload } from "antd";
 import ImgCrop from "antd-img-crop";
 import { useDispatch, useSelector } from "react-redux";
 import { UploadImageActionLoad } from "../../redux/action/uploadImage";
 
-const UploadImage = () => {
+const UploadImage = ({ onChange }) => {
   const dispatch = useDispatch();
   const uploadImage = useSelector((data) => data?.UploadImageReducer);
   // Image validation before upload
@@ -33,35 +33,46 @@ const UploadImage = () => {
   };
   // FormData handler for file upload
   const fileUploadHandler = (file) => {
-    console.log("File", file);
     const formData = new FormData();
     formData.append("image", file);
-    dispatch(UploadImageActionLoad(formData));
+    dispatch(UploadImageActionLoad({ formData, onChange }));
   };
 
   return (
-    <div className="flex items-center">
-      <ImgCrop rotationSlider>
-        <Upload
-          loading={uploadImage?.UploadImageLoader}
-          listType="picture-card"
-          showUploadList={false}
-          beforeUpload={(file) => {
-            validImage(file) && fileUploadHandler(file);
-          }}
-          // onPreview
-          maxCount={1}>
-          Upload
-        </Upload>
-      </ImgCrop>
-      <div>
-        <img
-          src={uploadImage?.UploadImageData}
-          alt="Uploaded"
-          style={{ maxWidth: "100px", maxHeight: "100px" }}
-        />
+    <Spin spinning={uploadImage?.UploadImageLoader} className="border-2" style={{ width: "100px", height: "100px" }} >
+      <div className="flex items-center gap-5">
+        <ImgCrop
+          aspect={6 / 9}
+          shape="round"
+          grid
+          zoom
+          rotate
+          modalTitle="Crop Your Image"
+          modalOk="Save"
+          modalCancel="Discard">
+          <Upload
+            loading={uploadImage?.UploadImageLoader}
+            listType="picture-card"
+            showUploadList={false}
+            beforeUpload={(file) => {
+              if (validImage(file)) {
+                fileUploadHandler(file);
+                return false;
+              }
+              return false;
+            }}
+            maxCount={1}>
+            {uploadImage?.UploadImageLoader ? "Uploading..." : "Upload"}
+          </Upload>
+        </ImgCrop>
+
+        {uploadImage?.UploadImageData && (
+          <div>
+            <img src={uploadImage?.UploadImageData} alt="Uploaded" className="max-w-full max-h-[16vh] "/>
+          </div>
+        )}
       </div>
-    </div>
+    </Spin>
   );
 };
 

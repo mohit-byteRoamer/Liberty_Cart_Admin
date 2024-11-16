@@ -14,6 +14,7 @@ export const Method = {
       .then(async (data) => {
         if (data) {
           if (data.status >= 200 && data.status < 400) {
+            console.log("POST_DATA", data.data)
             return {
               status: StatusCodes.Success,
               result: data.data,

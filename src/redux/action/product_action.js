@@ -1,5 +1,22 @@
 import reduxConstants from "../constants/reduxConstants";
 
+// ---------------- CREATE_PRODUCT_ACTION ---------------- //
+export const createProductActionLoad = (payload) => ({
+  type: reduxConstants.CREATE_PRODUCT_LOAD,
+  payload,
+});
+
+export const createProductActionSuccess = (payload) => ({
+  type: reduxConstants.CREATE_PRODUCT_SUCCESS,
+  payload,
+});
+
+export const createProductActionFail = (payload) => ({
+  type: reduxConstants.CREATE_PRODUCT_FAIL,
+  payload,
+});
+// ------------------------------------------------------- //
+
 // --------------- GET_ALL_PRODUCTS_ACTION --------------- //
 export const getAllProductsActionLoad = (payload) => ({
   type: reduxConstants.GET_ALL_PRODUCTS_LOAD,

@@ -2,7 +2,13 @@ import reduxConstants from "../constants/reduxConstants";
 import { takeLatest } from "redux-saga/effects";
 import { loginSaga, logoutSaga } from "./auth_saga";
 import { getAllOrdersSaga } from "./order_saga";
-import { deleteProductSaga, getAllProductsSaga, getProductDetailSaga, updateProductSaga } from "./product_saga";
+import {
+  createProductSaga,
+  deleteProductSaga,
+  getAllProductsSaga,
+  getProductDetailSaga,
+  updateProductSaga,
+} from "./product_saga";
 import { UploadImageSaga } from "./uploadImage_saga";
 
 export function* rootSaga() {
@@ -20,9 +26,10 @@ export function* rootSaga() {
   // --------------------------------------------------------------------------- //
 
   // ------------------------------ PRODUCT_SAGA ------------------------------- //
-  yield takeLatest(reduxConstants.GET_ALL_PRODUCTS_LOAD, getAllProductsSaga);
-  yield takeLatest(reduxConstants.GET_PRODUCT_DETAIL_LOAD, getProductDetailSaga);
+  yield takeLatest(reduxConstants.CREATE_PRODUCT_LOAD, createProductSaga);
   yield takeLatest(reduxConstants.UPDATE_PRODUCT_LOAD, updateProductSaga);
   yield takeLatest(reduxConstants.DELETE_PRODUCT_LOAD, deleteProductSaga);
+  yield takeLatest(reduxConstants.GET_PRODUCT_DETAIL_LOAD, getProductDetailSaga);
+  yield takeLatest(reduxConstants.GET_ALL_PRODUCTS_LOAD, getAllProductsSaga);
   // --------------------------------------------------------------------------- //
 }

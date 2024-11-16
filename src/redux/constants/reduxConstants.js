@@ -24,13 +24,19 @@ const reduxConstants = {
   GET_ALL_ORDERS_FAIL: "GET_ALL_ORDERS_FAIL",
   // ---------------------------------------------------- //
 
+  // ----------------- CREATE_PRODUCTS ------------------ //
+  CREATE_PRODUCT_LOAD: "CREATE_PRODUCT_LOAD",
+  CREATE_PRODUCT_SUCCESS: "CREATE_PRODUCT_SUCCESS",
+  CREATE_PRODUCT_FAIL: "CREATE_PRODUCT_FAIL",
+  // ---------------------------------------------------- //
+
   // ----------------- GET_ALL_PRODUCTS ----------------- //
   GET_ALL_PRODUCTS_LOAD: "GET_ALL_PRODUCTS_LOAD",
   GET_ALL_PRODUCTS_SUCCESS: "GET_ALL_PRODUCTS_SUCCESS",
   GET_ALL_PRODUCTS_FAIL: "GET_ALL_PRODUCTS_FAIL",
   // ---------------------------------------------------- //
 
-  // --------------- GET_PRODUCT_DETAIL ---------------- //
+  // --------------- GET_PRODUCT_DETAIL ----------------- //
   GET_PRODUCT_DETAIL_LOAD: "GET_PRODUCT_DETAIL_LOAD",
   GET_PRODUCT_DETAIL_SUCCESS: "GET_PRODUCT_DETAIL_SUCCESS",
   GET_PRODUCT_DETAIL_FAIL: "GET_PRODUCT_DETAIL_FAIL",

@@ -12,6 +12,7 @@ function EditProduct() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const product = useSelector((data) => data?.ProductReducer);
+  console.log("product_Loader", product?.getProductDetailLoader);
 
   const {
     handleSubmit,
@@ -35,7 +36,7 @@ function EditProduct() {
     dispatch(getProductDetailActionLoad(id));
   }, [id]);
 
-  const onUpdateSubmit = (data) => {
+  const onSubmit = (data) => {
     const updateData = {
       ...data,
       id: product?.getProductDetailData?._id,
@@ -46,7 +47,7 @@ function EditProduct() {
 
   return (
     <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-md my-5 dark:bg-gray-900 dark:text-white">
-      <form onSubmit={handleSubmit(onUpdateSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         {/* Product_Name */}
         <div className="productName mt-4">
           <label className="block text-gray-700 dark:text-gray-300" htmlFor="productName">

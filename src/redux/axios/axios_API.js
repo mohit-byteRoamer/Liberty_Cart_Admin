@@ -22,14 +22,14 @@ export const getAllOrders_API = () => Method.GET("/order/allOrder", header);
 // ----------------------------------------------------------------------------------------------- //
 
 // ----------------------------------------- PRODUCT API'S --------------------------------------- //
-export const addProduct_API = (data) => Method.POST("/product/new", data, header);
+export const createProduct_API = (data) => Method.POST("/product/new", data, header);
 export const getAllProducts_API = (data) =>
   Method.GET(`/product/admin-products?page=${data.currentPage}&limit=${data.pageSize}`, header);
 export const getProductDetail_API = (id) => Method.GET(`/product/${id}`, header);
 export const updateProduct_API = (data) => {
   console.log("API Payload:", data); // Debug payload
   console.log("API Endpoint:", `product/${data.id}`); // Debug endpoint
-  
+
   Method.PUT(`product/${data.id}`, data, header);
 };
 export const deleteProduct_API = (id) => Method.DELETE(`/product/${id}`, header);
