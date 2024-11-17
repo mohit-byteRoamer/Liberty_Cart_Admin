@@ -150,13 +150,13 @@ function AddProduct() {
           {errors.category && <span className="text-red-500">{errors.category.message}</span>}
         </div>
 
-        {/* Image */}
+        {/* Photo */}
         <div className="mb-6">
           <Controller
             name="photo"
             control={control}
             rules={{
-              required: "Image is required",
+              required: "Photo is required",
               validate: {
                 isValidURL: (value) => (value ? true : "Uploaded image URL is invalid"),
               },

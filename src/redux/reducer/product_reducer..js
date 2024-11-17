@@ -28,7 +28,7 @@ export const ProductReducer = (state = initialState, action) => {
 
     // ---------------- GET_ALL_PRODUCTS_REDUCER ---------------- //
     case reduxConstants.GET_ALL_PRODUCTS_LOAD:
-      return { ...state, getAllProductsLoader: true, UploadImageData: null };
+      return { ...state, getAllProductsLoader: true };
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
     case reduxConstants.GET_ALL_PRODUCTS_SUCCESS:
       return { ...state, getAllProductsLoader: false, getAllProductsData: action.payload };
@@ -39,7 +39,7 @@ export const ProductReducer = (state = initialState, action) => {
 
     // --------------- GET_PRODUCT_DETAIL_REDUCER -------------- //
     case reduxConstants.GET_PRODUCT_DETAIL_LOAD:
-      return { ...state, getProductDetailLoader: true, UploadImageData: null };
+      return { ...state, getProductDetailLoader: true };
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
     case reduxConstants.GET_PRODUCT_DETAIL_SUCCESS:
       return { ...state, getProductDetailLoader: false, getProductDetailData: action.payload };

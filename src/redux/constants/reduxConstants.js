@@ -53,6 +53,10 @@ const reduxConstants = {
   DELETE_PRODUCT_SUCCESS: "DELETE_PRODUCT_SUCCESS",
   DELETE_PRODUCT_FAIL: "DELETE_PRODUCT_FAIL",
   // ---------------------------------------------------- //
+
+  // ------------- RESET_UPLOAD_PHOTO_STATE ------------- //
+  RESET_UPLOAD_PHOTO_STATE: "RESET_UPLOAD_PHOTO_STATE",
+  // ---------------------------------------------------- //
 };
 
 export default reduxConstants;

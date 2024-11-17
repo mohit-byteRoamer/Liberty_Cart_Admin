@@ -14,3 +14,9 @@ export const UploadImageActionFail = (payload) => ({
   type: reduxConstants.UPLOAD_IMAGE_FAIL,
   payload,
 });
+
+// ---------------------------------------------------------- //
+export const resetUploadImageState = () => ({
+  type: reduxConstants.RESET_UPLOAD_IMAGE_STATE,
+});
+// ---------------------------------------------------------- //

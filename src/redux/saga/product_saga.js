@@ -21,7 +21,7 @@ import {
   updateProductActionFail,
   updateProductActionSuccess,
 } from "../action/product_action";
-import { UploadImageActionSuccess } from "../action/uploadImage";
+import { UploadImageActionLoad, UploadImageActionSuccess } from "../action/uploadImage";
 
 // ------------------- CREATE_PRODUCT_SAGA ------------------ //
 export function* createProductSaga(action) {
@@ -53,6 +53,8 @@ export function* createProductSaga(action) {
 
 // ------------------ UPDATE_PRODUCTS_SAGA ------------------ //
 export function* updateProductSaga(action) {
+  console.log("updateProductSaga", action);
+  
   const { updateData, navigate } = action.payload;
   try {
     const response = yield call(updateProduct_API, updateData);

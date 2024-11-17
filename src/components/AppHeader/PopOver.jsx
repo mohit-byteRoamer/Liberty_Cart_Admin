@@ -8,8 +8,11 @@ import { GiftOutlined, PlusSquareOutlined, ShoppingCartOutlined } from "@ant-des
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { ConstantRoutes } from "../Route/ConstantsRoutes";
+import { useDispatch } from "react-redux";
+import { resetUploadImageState, UploadImageActionLoad } from "../../redux/action/uploadImage";
 
 export function PopOver() {
+  const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
   const [isPopOverOpen, setIsPopOverOpen] = useState(false);
   console.log("USER", user);
@@ -50,6 +53,10 @@ export function PopOver() {
     }
   };
 
+  const resetPhotoState = () => {
+    dispatch(resetUploadImageState());
+  };
+
   const content = (
     <div className="space-y-3">
       {/* Links */}
@@ -77,7 +84,10 @@ export function PopOver() {
           </li>
           {/* Add Product */}
           <li className="border-b-2 text-base font-semibold hover:bg-slate-100 cursor-pointer rounded-md">
-            <Link className="flex items-center gap-2 p-2 hover:shadow-md" to={ConstantRoutes.ADD_PRODUCT}>
+            <Link
+              onClick={resetPhotoState}
+              className="flex items-center gap-2 p-2 hover:shadow-md"
+              to={ConstantRoutes.ADD_PRODUCT}>
               <PlusSquareOutlined />
               Add Products
             </Link>

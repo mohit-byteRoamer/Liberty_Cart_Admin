@@ -66,12 +66,9 @@ export const Method = {
         }
       });
   },
-  PUT(url, body) {
+  PUT(url, body, header) {
     return APIKit.put(url, body, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Accept: "application/json",
-      },
+      headers: header,
     })
       .then(async (data) => {
         if (data) {
