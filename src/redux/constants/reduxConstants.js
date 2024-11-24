@@ -57,6 +57,24 @@ const reduxConstants = {
   // ------------- RESET_UPLOAD_PHOTO_STATE ------------- //
   RESET_UPLOAD_PHOTO_STATE: "RESET_UPLOAD_PHOTO_STATE",
   // ---------------------------------------------------- //
+
+  // ---------------- CREATE_COUPON_CODE ---------------- //
+  CREATE_COUPON_CODE_LOAD: "CREATE_COUPON_CODE_LOAD",
+  CREATE_COUPON_CODE_SUCCESS: "CREATE_COUPON_CODE_SUCCESS",
+  CREATE_COUPON_CODE_FAIL: "CREATE_COUPON_CODE_FAIL",
+  // ---------------------------------------------------- //
+
+  // ---------------- GET_ALL_COUPON_CODE --------------- //
+  GET_ALL_COUPON_CODE_LOAD: "GET_ALL_COUPON_CODE_LOAD",
+  GET_ALL_COUPON_CODE_SUCCESS: "GET_ALL_COUPON_CODE_SUCCESS",
+  GET_ALL_COUPON_CODE_FAIL: "GET_ALL_COUPON_CODE_FAIL",
+  // ---------------------------------------------------- //
+
+  // --------------- DELETE_ALL_COUPON_CODE ------------- //
+  DELETE_COUPON_CODE_LOAD: "DELETE_COUPON_CODE_LOAD",
+  DELETE_COUPON_CODE_SUCCESS: "DELETE_COUPON_CODE_SUCCESS",
+  DELETE_COUPON_CODE_FAIL: "DELETE_COUPON_CODE_FAIL",
+  // ---------------------------------------------------- //
 };
 
 export default reduxConstants;

@@ -1,5 +1,6 @@
 import { Menu } from "antd";
-import { HomeOutlined, UserOutlined, ProductOutlined, OrderedListOutlined } from "@ant-design/icons";
+import { HomeOutlined, ProductOutlined, OrderedListOutlined } from "@ant-design/icons";
+import { RiCouponLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { ConstantRoutes } from "../Route/ConstantsRoutes";
 
@@ -18,7 +19,7 @@ const Sidebar = ({ className }) => {
       icon: <OrderedListOutlined />,
       path: `${ConstantRoutes.ALL_ORDERS}`,
     },
-    { label: "Users", key: "users", icon: <UserOutlined />, path: "/users" },
+    { label: "Coupon", key: "coupon", icon: <RiCouponLine />, path: `${ConstantRoutes.ALL_COUPONS}` },
   ];
   return (
     <div className={`w-1/5 bg-white shadow-md ${className}`}>

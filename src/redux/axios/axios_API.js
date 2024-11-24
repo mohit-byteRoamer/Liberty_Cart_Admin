@@ -13,6 +13,12 @@ export const login_Api = (data) => Method.POST("/users/login", data, header);
 export const logout_Api = () => Method.POST("/users/logout", header);
 // ----------------------------------------------------------------------------------------------- //
 
+// -------------------------------------- COUPON_CODE API'S -------------------------------------- //
+export const createCoupon_API = (data) => Method.POST("/payment/coupon-create", data, header);
+export const getAllCoupons_API = () => Method.GET("/payment/all-coupons", header);
+export const deleteCoupon_API = (id) => Method.DELETE(`/payment/delete-coupons/${id}`, header);
+// ----------------------------------------------------------------------------------------------- //
+
 // ----------------------------------------- IMAGE API'S ----------------------------------------- //
 export const uploadFile_API = (data) => Method.POST("/common/uploadFile", data, header1);
 // ----------------------------------------------------------------------------------------------- //

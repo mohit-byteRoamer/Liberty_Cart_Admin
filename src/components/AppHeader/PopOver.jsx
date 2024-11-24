@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { ConstantRoutes } from "../Route/ConstantsRoutes";
 import { useDispatch } from "react-redux";
-import { resetUploadImageState, UploadImageActionLoad } from "../../redux/action/uploadImage";
+import { resetUploadImageState } from "../../redux/action/uploadImage";
 
 export function PopOver() {
   const dispatch = useDispatch();
