@@ -15,7 +15,8 @@ export const logout_Api = () => Method.POST("/users/logout", header);
 
 // -------------------------------------- COUPON_CODE API'S -------------------------------------- //
 export const createCoupon_API = (data) => Method.POST("/payment/coupon-create", data, header);
-export const getAllCoupons_API = () => Method.GET("/payment/all-coupons", header);
+export const getAllCoupons_API = (data) =>
+  Method.GET(`/payment/all-coupons?page=${data.currentPage}&limit=${data.pageSize}`, header);
 export const deleteCoupon_API = (id) => Method.DELETE(`/payment/delete-coupons/${id}`, header);
 // ----------------------------------------------------------------------------------------------- //
 

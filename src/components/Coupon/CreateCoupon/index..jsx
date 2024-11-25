@@ -3,16 +3,27 @@ import { useState } from "react";
 import { Button, Modal } from "antd";
 import { RiAddLargeFill } from "react-icons/ri";
 import { Controller, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { create_Coupon_Code_Load, get_All_Coupon_Code_Load } from "../../../redux/action/coupon_action";
 
 const CreateCoupon = () => {
   const [open, setOpen] = useState(false);
+  const pageSize = 10;
+  const currentPage = 1;
+  const dispatch = useDispatch();
   // console.log("Order_Log", order);
 
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
+    reset,
+  } = useForm({
+    defaultValues: {
+      code: "",
+      amount: "",
+    },
+  });
 
   const showModal = () => {
     setOpen(true);
@@ -22,8 +33,17 @@ const CreateCoupon = () => {
     setOpen(false);
   };
 
+  const createCouponFunction = () => {
+    setOpen(false);
+    dispatch(get_All_Coupon_Code_Load({ currentPage, pageSize }));
+    reset({
+      code: "", // Reset code field
+      amount: "", // Reset amount field
+    });
+  };
+
   const onSubmit = (data) => {
-    console.log("Coupon_From_Data", data);
+    dispatch(create_Coupon_Code_Load({ data, createCouponFunction }));
   };
 
   return (
@@ -34,12 +54,12 @@ const CreateCoupon = () => {
       </Button>
       <Modal
         open={open}
-        title={"Add New Coupon"}     
+        title={"Add New Coupon"}
         onCancel={handleCancel}
         width={400}
+        style={{ top: 170 }}
         footer={null}
-        className="rounded-lg shadow-md"
-        >
+        className="rounded-lg">
         {
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* Code */}

@@ -10,6 +10,7 @@ import {
   updateProductSaga,
 } from "./product_saga";
 import { UploadImageSaga } from "./uploadImage_saga";
+import { createCouponSaga, deleteCouponSaga, getAllCouponSaga } from "./coupon_saga";
 
 export function* rootSaga() {
   // --------------------------- AUTHENTICATION_SAGA --------------------------- //
@@ -31,5 +32,11 @@ export function* rootSaga() {
   yield takeLatest(reduxConstants.DELETE_PRODUCT_LOAD, deleteProductSaga);
   yield takeLatest(reduxConstants.GET_PRODUCT_DETAIL_LOAD, getProductDetailSaga);
   yield takeLatest(reduxConstants.GET_ALL_PRODUCTS_LOAD, getAllProductsSaga);
+  // --------------------------------------------------------------------------- //
+
+  // ---------------------------- COUPON_CODE_SAGA ----------------------------- //
+  yield takeLatest(reduxConstants.CREATE_COUPON_CODE_LOAD, createCouponSaga);
+  yield takeLatest(reduxConstants.GET_ALL_COUPON_CODE_LOAD, getAllCouponSaga);
+  yield takeLatest(reduxConstants.DELETE_COUPON_CODE_LOAD, deleteCouponSaga);
   // --------------------------------------------------------------------------- //
 }

@@ -1,39 +1,61 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-// import { useDispatch } from "react-redux";
-// import { useEffect } from "react";
-// import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Button, Table } from "antd";
-import { Link } from "react-router-dom";
-import { ConstantRoutes } from "../../Route/ConstantsRoutes";
-import { RiAddLargeFill } from "react-icons/ri";
 import CreateCoupon from "../CreateCoupon/index.";
+import { delete_Coupon_Code_Load, get_All_Coupon_Code_Load } from "../../../redux/action/coupon_action";
+import { RiDeleteBin5Fill } from "react-icons/ri";
 // import moment from "moment";
-// import { LiaRupeeSignSolid } from "react-icons/lia";
 
 function GetAllCoupons() {
-  // const dispatch = useDispatch();
-  // const allCouponsData = useSelector((state) => state?.OrderReducer);
-  // console.log("ALL_ORDER_DATA_FETCH", allCouponsData?.getAllCouponData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+  const dispatch = useDispatch();
+  const allCouponsData = useSelector((state) => state?.CouponReducer);
 
-  // useEffect(() => {
-  //   dispatch();
-  // }, []);
+  useEffect(() => {
+    dispatch(get_All_Coupon_Code_Load({ currentPage, pageSize }));
+  }, [currentPage]);
+
+  const handleDelete = (id) => {
+    dispatch(delete_Coupon_Code_Load({ id, deleteCouponFunction }));
+  };
+
+  const deleteCouponFunction = () => {
+    dispatch(get_All_Coupon_Code_Load({ currentPage, pageSize }));
+  };
 
   const column = [
     // Serial Number
-    { title: "S.No.", key: "" },
+    { title: "S.No.", key: "", render: (text, record, index) => index + 1 + pageSize * (currentPage - 1) },
+
+    // ID
+    { title: "ID", dataIndex: "_id", key: "_id" },
 
     // Code
-    { title: "Code", dataIndex: "", key: "code" },
+    { title: "Code", dataIndex: "code", key: "code" },
 
     // Price
-    { title: "Price", dataIndex: "", key: "amount" },
-
-    // Create_Date
-    { title: "Create_Date", dataIndex: "", key: "createDate" },
+    { title: "Price", dataIndex: "amount", key: "amount" },
 
     // Action
-    { title: "Action", dataIndex: "", key: "action" },
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <div className="flex gap-2">
+          <Button
+            onClick={() => {
+              handleDelete(record._id);
+            }}
+            type="primary"
+            danger>
+            <RiDeleteBin5Fill className="text-base" />
+          </Button>
+        </div>
+      ),
+    },
   ];
 
   return (
@@ -43,7 +65,21 @@ function GetAllCoupons() {
         {/* Add Product Button */}
         <CreateCoupon />
       </div>
-      <Table columns={column} loading={""} dataSource={""} />
+      <Table
+        columns={column}
+        loading={allCouponsData?.getAllCouponCodeLoader}
+        dataSource={allCouponsData?.getAllCouponCodeData}
+        rowKey={(record) => record._id}
+        pagination={{
+          current: currentPage,
+          pageSize: pageSize,
+          showSizeChanger: false,
+          total: allCouponsData?.getAllCouponCodeData?.length,
+          onChange: (page) => {
+            setCurrentPage(page);
+          },
+        }}
+      />
     </div>
   );
 }

@@ -36,7 +36,7 @@ const Login = () => {
       exit={{ opacity: 0, y: 50 }}
       transition={{ duration: 1 }}
       className="container flex items-center justify-center max-w-full min-h-[100vh]">
-      <div className="w-96 py-8 rounded-2xl shadow-xl flex items-center justify-center border-2">
+      <div className="w-96 py-8 rounded-2xl shadow-xl flex items-center justify-center border-2 hover:border-blue-200 transition duration-500 ease-in-out">
         <div className="w-[90%]">
           <h1 className="text-3xl font-bold pb-4">Log in</h1>
           <p className="mb-6">Enter your details below</p>
@@ -57,7 +57,13 @@ const Login = () => {
                   },
                 }}
                 render={({ field }) => (
-                  <Input {...field} prefix={<UserOutlined />} allowClear placeholder="Email address" />
+                  <Input
+                    {...field}
+                    prefix={<UserOutlined className="text-xl" />}
+                    allowClear
+                    className="py-2 text-base"
+                    placeholder="Email address"
+                  />
                 )}
               />
 
@@ -86,7 +92,14 @@ const Login = () => {
                   },
                 }}
                 render={({ field }) => (
-                  <Input.Password {...field} prefix={<LockOutlined />} allowClear type="password" placeholder="Password" />
+                  <Input.Password
+                    {...field}
+                    prefix={<LockOutlined className="text-xl" />}
+                    allowClear
+                    type="password"
+                    className="py-2 text-base"
+                    placeholder="Password"
+                  />
                 )}
               />
               {errors.password && <p className="text-red-500">{errors.password.message}</p>}
@@ -94,17 +107,17 @@ const Login = () => {
 
             {/* Button */}
             <Button
-              className="w-full"
+              className="w-full py-5 mb-2"
               loading={logInLoader}
               type="primary"
               htmlType="submit"
               disabled={Object.keys(errors).length > 0}>
-              <MdOutlineLogin />
+              <MdOutlineLogin className="text-xl" />
               Log in
             </Button>
 
             <Link to="/forgot-password" className="text-blue-500 hover:underline">
-              <Button className="border-none w-full" type="dashed">
+              <Button className="border-none w-full py-5" type="dashed">
                 Forgot password?
               </Button>
             </Link>

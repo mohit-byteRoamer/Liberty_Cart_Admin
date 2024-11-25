@@ -21,7 +21,7 @@ import {
   updateProductActionFail,
   updateProductActionSuccess,
 } from "../action/product_action";
-import { UploadImageActionLoad, UploadImageActionSuccess } from "../action/uploadImage";
+import { UploadImageActionSuccess } from "../action/uploadImage";
 
 // ------------------- CREATE_PRODUCT_SAGA ------------------ //
 export function* createProductSaga(action) {
