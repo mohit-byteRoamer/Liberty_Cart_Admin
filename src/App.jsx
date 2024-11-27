@@ -26,12 +26,12 @@ function App() {
   return (
     <div className="relative">
       {token && <AppHeader className="fixed top-0 left-0 right-0 z-50 w-full" />}
-      <div className="flex h-vh pt-[7%] container mx-auto">
+      <div className="flex h-vh pt-[7.3%] container mx-auto">
         {/* ---------------------- Side_Bar ----------------------*/}
-        <Sidebar className="fixed h-[100vh] top-[15%] left-0 z-40" />
+        <Sidebar className="fixed h-[100vh] top-[14.8%] left-0 z-40" />
         {/* ---------------------- Content ----------------------*/}
 
-        <div className="w-full ml-60">
+        <div className="w-full ml-[13.5%]">
           <Routes>
             {/* ----------------------- UnProtected_Route -----------------------  */}
             <Route path={ConstantRoutes.LOGIN} element={<UnProtectedRoute Component={Login} />} />

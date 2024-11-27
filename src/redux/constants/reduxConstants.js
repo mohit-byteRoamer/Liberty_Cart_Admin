@@ -12,6 +12,30 @@ const reduxConstants = {
   LOGOUT_FAIL: "LOGOUT_FAIL",
   // ---------------------------------------------------- //
 
+  // ------------------ DASHBOARD_STATS ----------------- //
+  DASHBOARD_STATS_LOAD: "DASHBOARD_STATS_LOAD",
+  DASHBOARD_STATS_SUCCESS: "DASHBOARD_STATS_SUCCESS",
+  DASHBOARD_STATS_FAIL: "DASHBOARD_STATS_FAIL",
+  // ---------------------------------------------------- //
+
+  // ------------------- DASHBOARD_PIE ------------------ //
+  DASHBOARD_PIE_LOAD: "DASHBOARD_PIE_LOAD",
+  DASHBOARD_PIE_SUCCESS: "DASHBOARD_PIE_SUCCESS",
+  DASHBOARD_PIE_FAIL: "DASHBOARD_PIE_FAIL",
+  // ---------------------------------------------------- //
+
+  // ------------------- DASHBOARD_BAR ------------------ //
+  DASHBOARD_BAR_LOAD: "DASHBOARD_BAR_LOAD",
+  DASHBOARD_BAR_SUCCESS: "DASHBOARD_BAR_SUCCESS",
+  DASHBOARD_BAR_FAIL: "DASHBOARD_BAR_FAIL",
+  // ---------------------------------------------------- //
+
+  // ------------------ DASHBOARD_LINE ------------------ //
+  DASHBOARD_LINE_LOAD: "DASHBOARD_LINE_LOAD",
+  DASHBOARD_LINE_SUCCESS: "DASHBOARD_LINE_SUCCESS",
+  DASHBOARD_LINE_FAIL: "DASHBOARD_LINE_FAIL",
+  // ---------------------------------------------------- //
+
   // ------------------- UPLOAD_IMAGE ------------------- //
   UPLOAD_IMAGE_LOAD: "UPLOAD_IMAGE_LOAD",
   UPLOAD_IMAGE_SUCCESS: "UPLOAD_IMAGE_SUCCESS",

@@ -22,7 +22,7 @@ const ViewButton = ({ order }) => {
     setSelectedOrder(null);
   };
   return (
-    <>
+    <div>
       <Button type="primary" onClick={showModal}>
         View
       </Button>
@@ -130,7 +130,7 @@ const ViewButton = ({ order }) => {
             </Card>
           ))}
       </Modal>
-    </>
+    </div>
   );
 };
 

@@ -1,11 +1,6 @@
 import { call, put } from "redux-saga/effects";
 import { login_Api, logout_Api } from "../axios/axios_API";
-import {
-  logInActionsFail,
-  logInActionSuccess,
-  logoutActionsFail,
-  logoutActionSuccess,
-} from "../action/auth_action";
+import { logInActionsFail, logInActionSuccess, logoutActionsFail, logoutActionSuccess } from "../action/auth_action";
 import toast from "react-hot-toast";
 import { ConstantRoutes } from "../../components/Route/ConstantsRoutes";
 
@@ -19,11 +14,11 @@ export function* loginSaga(action) {
     const { result, status } = response;
     if (status === 1) {
       yield put(logInActionSuccess(result?.data));
-      toast.success(result?.message);
       localStorage.setItem("token", result?.data?.accessToken);
       localStorage.setItem("user", JSON.stringify(result?.data?.user));
       navigate("/");
-      window.location.reload()
+      window.location.reload();
+      toast.success(result?.message);
     } else {
       yield put(logInActionsFail(result?.data));
       toast.error(result?.message);
@@ -43,10 +38,10 @@ export function* logoutSaga(action) {
     const { result, status } = response;
     if (status === 1) {
       yield put(logoutActionSuccess(result?.data));
-      localStorage.clear()
-      toast.success(result?.message);
-      window.location.reload()
+      localStorage.clear();
+      window.location.reload();
       navigate(ConstantRoutes.LOGIN);
+      toast.success(result?.message);
     } else {
       yield put(logoutActionsFail(result?.data));
       toast.error(result?.message);

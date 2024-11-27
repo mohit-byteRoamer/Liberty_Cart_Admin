@@ -22,7 +22,7 @@ const Sidebar = ({ className }) => {
     { label: "Coupon", key: "coupon", icon: <RiCouponLine />, path: `${ConstantRoutes.ALL_COUPONS}` },
   ];
   return (
-    <div className={`w-1/5 bg-white shadow-md ${className}`}>
+    <div className={`w-52 bg-white shadow-md ${className}`}>
       <Menu mode="inline" defaultSelectedKeys={["dashboard"]}>
         {menuItems.map((item) => (
           <Menu.Item key={item.key} icon={item.icon}>

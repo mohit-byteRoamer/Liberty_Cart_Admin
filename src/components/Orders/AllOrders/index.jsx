@@ -3,11 +3,10 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllOrderActionLoad } from "../../../redux/action/order_action";
 import { useSelector } from "react-redux";
-import { Button, Table } from "antd";
+import { Table } from "antd";
 import moment from "moment";
 import ViewButton from "./ViewButton";
 import { LiaRupeeSignSolid } from "react-icons/lia";
-import { RiAddLargeFill } from "react-icons/ri";
 
 function AllOrders() {
   const dispatch = useDispatch();
@@ -79,7 +78,7 @@ function AllOrders() {
   ];
 
   return (
-    <div className="container mx-auto shadow-lg flex flex-col gap-5">
+    <div className="flex flex-col gap-2">
       <h1 className="text-5xl font-medium">Order Management</h1>
       <Table columns={column} loading={allOrderData?.getAllOrdersLoader} dataSource={allOrderData?.getAllOrdersData} />
     </div>

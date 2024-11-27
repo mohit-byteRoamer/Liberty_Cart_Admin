@@ -13,6 +13,13 @@ export const login_Api = (data) => Method.POST("/users/login", data, header);
 export const logout_Api = () => Method.POST("/users/logout", header);
 // ----------------------------------------------------------------------------------------------- //
 
+// --------------------------------------- DASHBOARD API'S --------------------------------------- //
+export const dashboardStats_API = () => Method.GET("/dashboard/stats", header);
+export const dashboardPie_API = () => Method.GET("/dashboard/pie", header);
+export const dashboardBar_API = () => Method.GET("/dashboard/bar", header);
+export const dashboardLine_API = () => Method.GET("/dashboard/line", header);
+// ----------------------------------------------------------------------------------------------- //
+
 // -------------------------------------- COUPON_CODE API'S -------------------------------------- //
 export const createCoupon_API = (data) => Method.POST("/payment/coupon-create", data, header);
 export const getAllCoupons_API = (data) =>

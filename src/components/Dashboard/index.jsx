@@ -1,59 +1,50 @@
 import { Card } from "antd";
-import {
-  UserOutlined,
-  OrderedListOutlined,
-  ProductOutlined,
-} from "@ant-design/icons";
+import Chart from "./chart";
+import RevenueTransactionChart from "./RevenueTransactionChart";
 
 const Dashboard = () => {
   const data = [
     {
-      title: "Total Products",
-      icon: <ProductOutlined className="text-blue-500" />,
+      title: "Revenue",
+      icon: <Chart type="circle" percent={25} />,
       counting: 100,
     },
     {
-      title: "Total Orders",
-      icon: <OrderedListOutlined className="text-blue-500" />,
+      title: "Users",
+      icon: <Chart type="circle" percent={50} />,
       counting: 10,
     },
     {
-      title: "Total Users",
-      icon: <UserOutlined className="text-blue-500" />,
+      title: "Transactions",
+      icon: <Chart type="circle" percent={75} />,
+      counting: 120,
+    },
+    {
+      title: "Products",
+      icon: <Chart type="circle" percent={100} />,
       counting: 120,
     },
   ];
 
   return (
-    <div className="flex-grow">
-      {/* Headers */}
-
-      <div className="flex h-screen">
-        <div className="w-full px-2">
-          <div className="grid grid-cols-3 gap-12">
-            {data.map((item, index) => (
-              <Card
-                hoverable={true}
-                key={index}
-                className="shadow-sm cursor-pointer"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-col">
-                    <span className="text-lg font-medium">{item.title}</span>
-                    <span className="text-2xl font-semibold mt-1">
-                      {item.counting}
-                    </span>
-                    <span className="text-sm text-gray-500">
-                      {item.counting}
-                    </span>
-                  </div>
-                  <div className="text-3xl text-green-500">{item.icon}</div>
-                </div>
-              </Card>
-            ))}
-          </div>
-          <div className="grid grid-cols-3 gap-4 px-2 mt-5">Content</div>
-        </div>
+    <div className="w-full px-2 bg-slate-50">
+      <div className="grid grid-cols-4 gap-8">
+        {data.map((item, index) => (
+          <Card hoverable={true} key={index} className="shadow-sm cursor-pointer">
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col">
+                <span className="text-sm font-medium">{item.title}</span>
+                <span className="text-xl font-semibold mt-1">{item.counting}</span>
+                <span className="text-sm text-gray-500">{item.counting}</span>
+              </div>
+              <div className="chart">{item.icon}</div>
+            </div>
+          </Card>
+        ))}
+      </div>
+      <div className="flex flex-col gap-2 p-2 rounded-md mt-5 shadow-sm hover:shadow-xl bg-white">
+        <h1 className="text-center text-2xl font-thin uppercase text-gray-500">Revenue & Transactions</h1>
+        <RevenueTransactionChart />
       </div>
     </div>
   );
