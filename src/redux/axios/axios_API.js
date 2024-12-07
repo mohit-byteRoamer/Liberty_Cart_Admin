@@ -14,10 +14,10 @@ export const logout_Api = () => Method.POST("/users/logout", header);
 // ----------------------------------------------------------------------------------------------- //
 
 // --------------------------------------- DASHBOARD API'S --------------------------------------- //
-export const dashboardStats_API = () => Method.GET("/dashboard/stats", header);
-export const dashboardPie_API = () => Method.GET("/dashboard/pie", header);
-export const dashboardBar_API = () => Method.GET("/dashboard/bar", header);
-export const dashboardLine_API = () => Method.GET("/dashboard/line", header);
+export const getDashboardStats_API = () => Method.GET("/dashboard/stats", header);
+export const getDashboardPie_API = () => Method.GET("/dashboard/pie", header);
+export const getDashboardBar_API = () => Method.GET("/dashboard/bar", header);
+export const getDashboardLine_API = () => Method.GET("/dashboard/line", header);
 // ----------------------------------------------------------------------------------------------- //
 
 // -------------------------------------- COUPON_CODE API'S -------------------------------------- //

@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export const UploadImageReducer = (state = initialState, action) => {
-  console.log("UploadImageReducer", action);
   switch (action.type) {
     case reduxConstants.UPLOAD_IMAGE_LOAD:
       return { ...state, UploadImageLoader: true };

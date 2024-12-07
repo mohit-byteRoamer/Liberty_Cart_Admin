@@ -122,7 +122,7 @@ export function PopOver() {
     <div onClick={handlePopoverClick}>
       <Popover
         trigger="click"
-        content={user ? content : ""}
+        content={user ? content : null}
         open={isPopOverOpen}
         className="popover rounded-full overflow-hidden flex items-center gap-2 cursor-pointer p-1">
         {/* Avatar */}

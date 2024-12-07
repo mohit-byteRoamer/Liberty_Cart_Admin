@@ -13,6 +13,7 @@ const BreadCrumb = () => {
    const filteredPathNames = pathNames.filter(
       (name) => isNaN(name) && !/^[0-9a-fA-F]{24}$/.test(name)
    );
+   
 
    return (
       <Breadcrumb

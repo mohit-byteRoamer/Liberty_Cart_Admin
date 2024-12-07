@@ -11,11 +11,19 @@ import {
 } from "./product_saga";
 import { UploadImageSaga } from "./uploadImage_saga";
 import { createCouponSaga, deleteCouponSaga, getAllCouponSaga } from "./coupon_saga";
+import { getDashboardBarSaga, getDashboardLineSaga, getDashboardPieSaga, getDashboardStatsSaga } from "./dashboard_saga";
 
 export function* rootSaga() {
   // --------------------------- AUTHENTICATION_SAGA --------------------------- //
   yield takeLatest(reduxConstants.LOGIN_LOAD, loginSaga);
   yield takeLatest(reduxConstants.LOGOUT_LOAD, logoutSaga);
+  // --------------------------------------------------------------------------- //
+
+  // ----------------------------- DASHBOARD_SAGA ------------------------------ //
+  yield takeLatest(reduxConstants.GET_DASHBOARD_STATS_LOAD, getDashboardStatsSaga);
+  yield takeLatest(reduxConstants.GET_DASHBOARD_PIE_LOAD, getDashboardPieSaga);
+  yield takeLatest(reduxConstants.GET_DASHBOARD_BAR_LOAD, getDashboardBarSaga);
+  yield takeLatest(reduxConstants.GET_DASHBOARD_LINE_LOAD, getDashboardLineSaga);
   // --------------------------------------------------------------------------- //
 
   // ------------------------------- ORDER_SAGA -------------------------------- //

@@ -13,4 +13,7 @@ export const ConstantRoutes = {
   HELP: "/help",
   ALL_COUPONS: "/payment/all-coupons",
   CREATE_COUPON: "/payment/coupon-create",
+  LINE_CHART: "/line_chart",
+  PIE_CHART: "/pie_chart",
+  STATS_CHART: "/stats_chart",
 };

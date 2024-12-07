@@ -1,63 +1,63 @@
 import reduxConstants from "../constants/reduxConstants";
 
 const initialState = {
-  dashboardStatsLoader: false,
-  dashboardStatsData: [],
-  dashboardPieLoader: false,
-  dashboardPieData: [],
-  dashboardBarLoader: false,
-  dashboardBarData: [],
-  dashboardLineLoader: false,
-  dashboardLineData: [],
+  getDashboardStatsLoader: false,
+  getDashboardStatsData: [],
+  getDashboardPieLoader: false,
+  getDashboardPieData: [],
+  getDashboardBarLoader: false,
+  getDashboardBarData: [],
+  getDashboardLineLoader: false,
+  getDashboardLineData: [],
 };
 
 export const DashboardReducer = (state = initialState, action) => {
   switch (action.type) {
     // ------------------------------ DASHBOARD_STATS_REDUCER ------------------------------ //
-    case reduxConstants.DASHBOARD_STATS_LOAD: {
-      return { ...state, dashboardStatsLoader: true };
+    case reduxConstants.GET_DASHBOARD_STATS_LOAD: {
+      return { ...state, getDashboardStatsLoader: true };
     }
-    case reduxConstants.DASHBOARD_STATS_SUCCESS: {
-      return { ...state, dashboardStatsLoader: false, dashboardStatsData: action.payload };
+    case reduxConstants.GET_DASHBOARD_STATS_SUCCESS: {
+      return { ...state, getDashboardStatsLoader: false, getDashboardStatsData: action.payload };
     }
-    case reduxConstants.DASHBOARD_STATS_FAIL: {
-      return { ...state, dashboardStatsLoader: false };
+    case reduxConstants.GET_DASHBOARD_STATS_FAIL: {
+      return { ...state, getDashboardStatsLoader: false };
     }
     // ------------------------------------------------------------------------------------- //
 
     // ------------------------------- DASHBOARD_PIE_REDUCER ------------------------------- //
-    case reduxConstants.DASHBOARD_PIE_LOAD: {
-      return { ...state, dashboardPieLoader: true };
+    case reduxConstants.GET_DASHBOARD_PIE_LOAD: {
+      return { ...state, getDashboardPieLoader: true };
     }
-    case reduxConstants.DASHBOARD_PIE_SUCCESS: {
-      return { ...state, dashboardPieLoader: false, dashboardPieData: action.payload };
+    case reduxConstants.GET_DASHBOARD_PIE_SUCCESS: {
+      return { ...state, getDashboardPieLoader: false, getDashboardPieData: action.payload };
     }
-    case reduxConstants.DASHBOARD_PIE_FAIL: {
-      return { ...state, dashboardPieLoader: false };
+    case reduxConstants.GET_DASHBOARD_PIE_FAIL: {
+      return { ...state, getDashboardPieLoader: false };
     }
     // ------------------------------------------------------------------------------------- //
 
     // ------------------------------- DASHBOARD_BAR_REDUCER ------------------------------- //
-    case reduxConstants.DASHBOARD_BAR_LOAD: {
-      return { ...state, dashboardBarLoader: true };
+    case reduxConstants.GET_DASHBOARD_BAR_LOAD: {
+      return { ...state, getDashboardBarLoader: true };
     }
-    case reduxConstants.DASHBOARD_BAR_SUCCESS: {
-      return { ...state, dashboardBarLoader: false, dashboardBarData: action.payload };
+    case reduxConstants.GET_DASHBOARD_BAR_SUCCESS: {
+      return { ...state, getDashboardBarLoader: false, getDashboardBarData: action.payload };
     }
-    case reduxConstants.DASHBOARD_BAR_FAIL: {
-      return { ...state, dashboardBarLoader: false };
+    case reduxConstants.GET_DASHBOARD_BAR_FAIL: {
+      return { ...state, getDashboardBarLoader: false };
     }
     // ------------------------------------------------------------------------------------- //
 
     // ------------------------------- DASHBOARD_LINE_REDUCER ------------------------------ //
-    case reduxConstants.DASHBOARD_LINE_LOAD: {
-      return { ...state, dashboardLineLoader: true };
+    case reduxConstants.GET_DASHBOARD_LINE_LOAD: {
+      return { ...state, getDashboardLineLoader: true };
     }
-    case reduxConstants.DASHBOARD_LINE_SUCCESS: {
-      return { ...state, dashboardLineLoader: false, dashboardLineData: action.payload };
+    case reduxConstants.GET_DASHBOARD_LINE_SUCCESS: {
+      return { ...state, getDashboardLineLoader: false, getDashboardLineData: action.payload };
     }
-    case reduxConstants.DASHBOARD_LINE_FAIL: {
-      return { ...state, dashboardLineLoader: false };
+    case reduxConstants.GET_DASHBOARD_LINE_FAIL: {
+      return { ...state, getDashboardLineLoader: false };
     }
     // ------------------------------------------------------------------------------------- //
 
