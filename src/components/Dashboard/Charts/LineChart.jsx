@@ -20,12 +20,12 @@ function LineChart() {
 
   const chartOptions = {
     chart: { id: "line-chart", toolbar: { show: true } },
+    title: { text: "Monthly Wise", align: "center" },
     xaxis: {
       categories: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
     },
     stroke: { curve: "smooth" },
     markers: { size: 5 },
-    title: { text: "Monthly Wise", align: "center" },
   };
 
   const series = [

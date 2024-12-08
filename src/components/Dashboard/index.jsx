@@ -4,29 +4,15 @@ import BarChart from "./Charts/BarChart";
 import { Card } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getDashboardBarActionLoad,
-  getDashboardPieActionLoad,
-  getDashboardStatsActionLoad,
-} from "../../redux/action/dashboard_action";
+import { getDashboardBarActionLoad, getDashboardStatsActionLoad } from "../../redux/action/dashboard_action";
 import Inventory from "./Inventory";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   // Data Fetch from Store by Selector
-  const {
-    getDashboardBarData,
-    getDashboardBarLoader,
-    getDashboardLineData,
-    getDashboardLineLoader,
-    getDashboardPieData,
-    getDashboardPieLoader,
-    getDashboardStatsData,
-    getDashboardStatsLoader,
-  } = useSelector((state) => state?.DashboardReducer);
-  console.log("getDashboardBarData", getDashboardBarData);
-  // console.log("getDashboardLineData", getDashboardLineData);
-  // console.log("getDashboardStatsData", getDashboardStatsData);
+  const { getDashboardBarData, getDashboardBarLoader, getDashboardStatsData, getDashboardStatsLoader } = useSelector(
+    (state) => state?.DashboardReducer
+  );
 
   const data = [
     {
@@ -61,10 +47,6 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(getDashboardPieActionLoad());
-  }, []);
-
-  useEffect(() => {
     dispatch(getDashboardBarActionLoad());
   }, []);
 
@@ -73,7 +55,11 @@ const Dashboard = () => {
       {/* Card */}
       <div className="grid grid-cols-5 gap-3">
         {data.map((item, index) => (
-          <Card loading={getDashboardStatsLoader} hoverable={false} key={index} className="shadow-sm border-2 cursor-pointer">
+          <Card
+            loading={getDashboardStatsLoader}
+            hoverable={false}
+            key={index}
+            className="shadow-sm border-2 cursor-pointer">
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
                 <span className="text-sm font-medium">{item.title}</span>

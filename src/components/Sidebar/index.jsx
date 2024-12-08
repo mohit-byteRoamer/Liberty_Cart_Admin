@@ -35,10 +35,10 @@ const Sidebar = ({ className }) => {
           path: `${ConstantRoutes.PIE_CHART}`,
         },
         {
-          label: "Stats Chart",
-          key: "stats-chart",
+          label: "Area (Stats) Chart",
+          key: "area-chart",
           icon: <IoStatsChart />,
-          path: `${ConstantRoutes.STATS_CHART}`,
+          path: `${ConstantRoutes.AREA_CHART}`,
         },
       ],
     },

@@ -14,7 +14,7 @@ import AddProduct from "./components/Products/AddProduct";
 import GetAllCoupons from "./components/Coupon/GetCoupon";
 import PieChart from "./components/Dashboard/Charts/PieChart";
 import LineChart from "./components/Dashboard/Charts/LineChart";
-import StatsChart from "./components/Dashboard/Charts/StatsChart";
+import AreaChart from "./components/Dashboard/Charts/AreaChart";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -42,7 +42,7 @@ function App() {
             <Route path={ConstantRoutes.DASHBOARD} element={<ProtectedRoute Component={Dashboard} />} />
             <Route path={ConstantRoutes.PIE_CHART} element={<ProtectedRoute Component={PieChart} />} />
             <Route path={ConstantRoutes.LINE_CHART} element={<ProtectedRoute Component={LineChart} />} />
-            <Route path={ConstantRoutes.STATS_CHART} element={<ProtectedRoute Component={StatsChart} />} />
+            <Route path={ConstantRoutes.AREA_CHART} element={<ProtectedRoute Component={AreaChart} />} />
             <Route path={ConstantRoutes.ALL_ORDERS} element={<ProtectedRoute Component={AllOrders} />} />
             <Route path={ConstantRoutes.ALL_PRODUCTS} element={<ProtectedRoute Component={AllProducts} />} />
             <Route path={ConstantRoutes.ADD_PRODUCT} element={<ProtectedRoute Component={AddProduct} />} />
